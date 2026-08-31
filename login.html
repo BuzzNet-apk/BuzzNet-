@@ -1,0 +1,1184 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Login · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+
+        --text: #f8f6ff;
+        --muted: #9993a8;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+
+        --border: rgba(255,255,255,0.08);
+
+        --danger: #ff667a;
+        --success: #6ee7a0;
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px 15px;
+
+        background:
+            radial-gradient(
+                circle at 85% 5%,
+                rgba(141,92,255,0.16),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 10% 90%,
+                rgba(216,177,90,0.08),
+                transparent 30%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    button,
+    input {
+        font: inherit;
+    }
+
+
+    button {
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* ================================
+       LOGIN CARD
+       ================================ */
+
+    .login-card {
+
+        width:
+            min(430px, 100%);
+
+        padding:
+            32px 25px 25px;
+
+        border-radius: 25px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(23,21,33,0.98),
+                rgba(13,12,19,0.98)
+            );
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 30px 90px rgba(0,0,0,0.5);
+
+        backdrop-filter:
+            blur(20px);
+    }
+
+
+    /* ================================
+       BRAND
+       ================================ */
+
+    .brand {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+
+    .brand-icon {
+
+        width: 64px;
+        height: 64px;
+
+        display: grid;
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-size: 25px;
+
+        font-weight: 800;
+    }
+
+
+    .brand h1 {
+
+        margin-top: 14px;
+
+        font-size: 24px;
+
+        font-weight: 800;
+
+        letter-spacing: -0.04em;
+    }
+
+
+    .brand h1 span {
+        color: var(--gold-light);
+    }
+
+
+    .brand p {
+
+        margin-top: 6px;
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    /* ================================
+       FORM
+       ================================ */
+
+    .form-group {
+        margin-top: 16px;
+    }
+
+
+    .form-group label {
+
+        display: block;
+
+        margin-bottom: 7px;
+
+        color: #d8d3e2;
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    .input-wrap {
+        position: relative;
+    }
+
+
+    .input-icon {
+
+        position: absolute;
+
+        left: 13px;
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        color: var(--muted);
+
+        font-size: 14px;
+
+        pointer-events: none;
+    }
+
+
+    .input-wrap input {
+
+        width: 100%;
+        height: 48px;
+
+        padding:
+            0 13px 0 40px;
+
+        border-radius: 13px;
+
+        background: var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        outline: none;
+
+        color: var(--text);
+
+        font-size: 10px;
+
+        transition: 0.2s ease;
+    }
+
+
+    .input-wrap input:focus {
+
+        border-color:
+            rgba(141,92,255,0.55);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(141,92,255,0.08);
+    }
+
+
+    .input-wrap input::placeholder {
+        color: #716b7c;
+    }
+
+
+    .password-wrap input {
+        padding-right: 42px;
+    }
+
+
+    .password-toggle {
+
+        position: absolute;
+
+        right: 11px;
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        background: transparent;
+
+        color: var(--muted);
+
+        font-size: 15px;
+    }
+
+
+    /* ================================
+       OPTIONS
+       ================================ */
+
+    .options {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-top: 12px;
+    }
+
+
+    .remember {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        color: var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    .remember input {
+        accent-color: var(--purple);
+    }
+
+
+    .forgot {
+
+        color: var(--gold-light);
+
+        font-size: 8px;
+
+        font-weight: 600;
+    }
+
+
+    /* ================================
+       LOGIN BUTTON
+       ================================ */
+
+    .login-btn {
+
+        width: 100%;
+        height: 48px;
+
+        margin-top: 20px;
+
+        border-radius: 13px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        transition: 0.2s ease;
+    }
+
+
+    .login-btn:hover {
+        transform: translateY(-1px);
+    }
+
+
+    .login-btn:disabled {
+
+        opacity: 0.45;
+
+        cursor: not-allowed;
+
+        transform: none;
+    }
+
+
+    /* ================================
+       MESSAGE
+       ================================ */
+
+    .form-message {
+
+        display: none;
+
+        margin-top: 12px;
+
+        padding: 10px;
+
+        border-radius: 10px;
+
+        font-size: 8px;
+
+        line-height: 1.5;
+    }
+
+
+    .form-message.error {
+
+        display: block;
+
+        color: var(--danger);
+
+        background:
+            rgba(255,102,122,0.07);
+
+        border:
+            1px solid
+            rgba(255,102,122,0.14);
+    }
+
+
+    .form-message.success {
+
+        display: block;
+
+        color: var(--success);
+
+        background:
+            rgba(110,231,160,0.07);
+
+        border:
+            1px solid
+            rgba(110,231,160,0.14);
+    }
+
+
+    /* ================================
+       DIVIDER
+       ================================ */
+
+    .divider {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin: 22px 0;
+    }
+
+
+    .divider::before,
+    .divider::after {
+
+        content: "";
+
+        height: 1px;
+
+        flex: 1;
+
+        background:
+            var(--border);
+    }
+
+
+    .divider span {
+
+        color: var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    /* ================================
+       SIGN UP
+       ================================ */
+
+    .signup-text {
+
+        text-align: center;
+
+        color: var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .signup-text a {
+
+        color: var(--gold-light);
+
+        font-weight: 700;
+    }
+
+
+    .footer {
+
+        margin-top: 20px;
+
+        text-align: center;
+
+        color: #666171;
+
+        font-size: 7px;
+    }
+
+
+    /* ================================
+       FORGOT PASSWORD MODAL
+       ================================ */
+
+    .modal {
+
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 100;
+
+        display: none;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 15px;
+
+        background:
+            rgba(0,0,0,0.72);
+
+        backdrop-filter: blur(8px);
+    }
+
+
+    .modal.show {
+        display: flex;
+    }
+
+
+    .modal-card {
+
+        width:
+            min(390px, 100%);
+
+        padding: 22px;
+
+        border-radius: 20px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 30px 80px
+            rgba(0,0,0,0.55);
+    }
+
+
+    .modal-card h2 {
+        font-size: 17px;
+    }
+
+
+    .modal-card p {
+
+        margin-top: 6px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        line-height: 1.5;
+    }
+
+
+    .reset-input {
+
+        width: 100%;
+
+        height: 45px;
+
+        margin-top: 15px;
+
+        padding: 0 12px;
+
+        border-radius: 12px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        outline: none;
+
+        color: var(--text);
+
+        font-size: 10px;
+    }
+
+
+    .modal-actions {
+
+        display: flex;
+
+        gap: 8px;
+
+        margin-top: 12px;
+    }
+
+
+    .modal-actions button {
+
+        flex: 1;
+
+        height: 43px;
+
+        border-radius: 11px;
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    .cancel-btn {
+
+        background:
+            var(--surface-2);
+
+        color: var(--text);
+    }
+
+
+    .reset-btn {
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+    }
+
+
+    @media (max-width: 420px) {
+
+        .login-card {
+            padding:
+                26px 18px 21px;
+        }
+
+    }
+
+</style>
+
+</head><body><main class="login-card">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            B
+        </div>
+
+        <h1>
+            Welcome to <span>BuzzNet</span>
+        </h1>
+
+        <p>
+            Sign in to connect, discover and
+            share with your community.
+        </p>
+
+    </div>
+
+
+
+    <!-- LOGIN FORM -->
+
+    <form id="loginForm" novalidate>
+
+
+        <div class="form-group">
+
+            <label for="identifier">
+                EMAIL OR USERNAME
+            </label>
+
+            <div class="input-wrap">
+
+                <span class="input-icon">
+                    @
+                </span>
+
+                <input
+                    type="text"
+                    id="identifier"
+                    placeholder="Email or username"
+                    autocomplete="username"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="password">
+                PASSWORD
+            </label>
+
+            <div class="input-wrap password-wrap">
+
+                <span class="input-icon">
+                    ◆
+                </span>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    id="passwordToggle"
+                    aria-label="Show password"
+                >
+                    ◉
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="options">
+
+            <label class="remember">
+
+                <input
+                    type="checkbox"
+                    id="remember"
+                >
+
+                Remember me
+
+            </label>
+
+
+            <a
+                href="#"
+                class="forgot"
+                id="forgotPassword"
+            >
+                Forgot password?
+            </a>
+
+        </div>
+
+
+
+        <div
+            class="form-message"
+            id="formMessage"
+        ></div>
+
+
+
+        <button
+            type="submit"
+            class="login-btn"
+            id="loginBtn"
+        >
+            LOG IN TO BUZZNET
+        </button>
+
+    </form>
+
+
+
+    <div class="divider">
+
+        <span>
+            NEW TO BUZZNET?
+        </span>
+
+    </div>
+
+
+
+    <div class="signup-text">
+
+        Don't have an account?
+
+        <a href="signup.html">
+            Create one
+        </a>
+
+    </div>
+
+
+    <div class="footer">
+        BuzzNet · Connect · Discover · Create
+    </div>
+
+</main>
+
+
+
+<!-- FORGOT PASSWORD MODAL -->
+
+<div
+    class="modal"
+    id="resetModal"
+>
+
+    <div class="modal-card">
+
+        <h2>
+            Reset password
+        </h2>
+
+        <p>
+            Enter your email address and we'll
+            prepare a password-reset request.
+        </p>
+
+
+        <input
+            type="email"
+            id="resetEmail"
+            class="reset-input"
+            placeholder="Enter your email"
+            autocomplete="email"
+        >
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="cancel-btn"
+                id="cancelReset"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="reset-btn"
+                id="resetBtn"
+            >
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+    const identifier =
+        document.getElementById(
+            "identifier"
+        );
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+    const passwordToggle =
+        document.getElementById(
+            "passwordToggle"
+        );
+
+    const remember =
+        document.getElementById(
+            "remember"
+        );
+
+    const loginBtn =
+        document.getElementById(
+            "loginBtn"
+        );
+
+    const formMessage =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    /* ================================
+       PASSWORD VISIBILITY
+       ================================ */
+
+    passwordToggle.addEventListener(
+        "click",
+        () => {
+
+            if (
+                password.type ===
+                "password"
+            ) {
+
+                password.type =
+                    "text";
+
+                passwordToggle.textContent =
+                    "◌";
+
+            } else {
+
+                password.type =
+                    "password";
+
+                passwordToggle.textContent =
+                    "◉";
+
+            }
+
+        }
+    );
+
+
+    /* ================================
+       MESSAGE
+       ================================ */
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        formMessage.textContent =
+            text;
+
+        formMessage.className =
+            "form-message " + type;
+
+    }
+
+
+    /* ================================
+       LOGIN
+       ================================ */
+
+    loginForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            const user =
+                identifier.value.trim();
+
+            const pass =
+                password.value;
+
+
+            if (!user) {
+
+                showMessage(
+                    "Enter your email or username.",
+                    "error"
+                );
+
+                identifier.focus();
+
+                return;
+
+            }
+
+
+            if (!pass) {
+
+                showMessage(
+                    "Enter your password.",
+                    "error"
+                );
+
+                password.focus();
+
+                return;
+
+            }
+
+
+            loginBtn.disabled =
+                true;
+
+            loginBtn.textContent =
+                "SIGNING IN...";
+
+
+            setTimeout(
+                () => {
+
+                    /*
+                     * Demo authentication only.
+                     * Real authentication will be
+                     * connected to the BuzzNet backend.
+                     */
+
+                    showMessage(
+                        "Login information is valid. Real authentication will be connected when BuzzNet's backend is added.",
+                        "success"
+                    );
+
+
+                    loginBtn.disabled =
+                        false;
+
+                    loginBtn.textContent =
+                        "LOG IN TO BUZZNET";
+
+                },
+                900
+            );
+
+        }
+    );
+
+
+    /* ================================
+       FORGOT PASSWORD
+       ================================ */
+
+    const forgotPassword =
+        document.getElementById(
+            "forgotPassword"
+        );
+
+    const resetModal =
+        document.getElementById(
+            "resetModal"
+        );
+
+    const cancelReset =
+        document.getElementById(
+            "cancelReset"
+        );
+
+    const resetBtn =
+        document.getElementById(
+            "resetBtn"
+        );
+
+    const resetEmail =
+        document.getElementById(
+            "resetEmail"
+        );
+
+
+    forgotPassword.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            resetModal.classList.add(
+                "show"
+            );
+
+            setTimeout(
+                () => resetEmail.focus(),
+                100
+            );
+
+        }
+    );
+
+
+    cancelReset.addEventListener(
+        "click",
+        () => {
+
+            resetModal.classList.remove(
+                "show"
+            );
+
+            resetEmail.value = "";
+
+        }
+    );
+
+
+    resetBtn.addEventListener(
+        "click",
+        () => {
+
+            const email =
+                resetEmail.value.trim();
+
+
+            if (
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    .test(email)
+            ) {
+
+                resetEmail.focus();
+
+                return;
+
+            }
+
+
+            resetBtn.textContent =
+                "PROCESSING...";
+
+
+            setTimeout(
+                () => {
+
+                    resetBtn.textContent =
+                        "Continue";
+
+                    resetModal.classList.remove(
+                        "show"
+                    );
+
+                    resetEmail.value = "";
+
+                    showMessage(
+                        "Password reset request received. Real email recovery will be connected with the backend.",
+                        "success"
+                    );
+
+                },
+                900
+            );
+
+        }
+    );
+
+
+    resetModal.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                resetModal
+            ) {
+
+                resetModal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

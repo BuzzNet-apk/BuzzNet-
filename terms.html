@@ -1,0 +1,657 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Terms of Service · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+
+        --text: #f8f6ff;
+        --muted: #aaa4b7;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --border: rgba(255,255,255,0.08);
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 90% 0%,
+                rgba(141,92,255,0.14),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 5% 90%,
+                rgba(216,177,90,0.08),
+                transparent 28%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family:
+            "Inter",
+            sans-serif;
+
+        line-height: 1.7;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* ================================
+       HEADER
+       ================================ */
+
+    header {
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 20;
+
+        border-bottom:
+            1px solid var(--border);
+
+        background:
+            rgba(8,7,13,0.88);
+
+        backdrop-filter:
+            blur(18px);
+    }
+
+
+    .nav {
+
+        width:
+            min(1050px, 92%);
+
+        min-height: 70px;
+
+        margin: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+
+    .brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        font-weight: 800;
+
+        font-size: 17px;
+    }
+
+
+    .brand-icon {
+
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+
+        place-items: center;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-weight: 800;
+    }
+
+
+    .brand span {
+        color: var(--gold-light);
+    }
+
+
+    .back {
+
+        padding:
+            9px 14px;
+
+        border-radius: 10px;
+
+        border:
+            1px solid var(--border);
+
+        background:
+            var(--surface);
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    .back:hover {
+        color: var(--text);
+    }
+
+
+    /* ================================
+       MAIN
+       ================================ */
+
+    main {
+
+        width:
+            min(900px, 92%);
+
+        margin:
+            55px auto 70px;
+    }
+
+
+    .hero {
+
+        padding:
+            35px;
+
+        margin-bottom:
+            22px;
+
+        border-radius: 22px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(23,21,33,0.95),
+                rgba(13,12,19,0.95)
+            );
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .eyebrow {
+
+        display: inline-block;
+
+        margin-bottom: 10px;
+
+        color: var(--gold-light);
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        letter-spacing:
+            0.14em;
+    }
+
+
+    h1 {
+
+        font-size:
+            clamp(28px, 6vw, 45px);
+
+        line-height: 1.1;
+
+        letter-spacing:
+            -0.045em;
+    }
+
+
+    .hero p {
+
+        max-width: 650px;
+
+        margin-top: 14px;
+
+        color: var(--muted);
+
+        font-size: 11px;
+    }
+
+
+    .updated {
+
+        margin-top: 16px;
+
+        color: #777184;
+
+        font-size: 8px;
+    }
+
+
+    /* ================================
+       CONTENT
+       ================================ */
+
+    .content {
+
+        display: grid;
+
+        gap: 14px;
+    }
+
+
+    .section {
+
+        padding:
+            25px;
+
+        border-radius: 18px;
+
+        background:
+            rgba(17,16,25,0.86);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .section h2 {
+
+        margin-bottom: 10px;
+
+        color: var(--gold-light);
+
+        font-size: 16px;
+
+        line-height: 1.3;
+    }
+
+
+    .section p {
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .section p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .section ul {
+
+        margin:
+            8px 0 0 18px;
+
+        color: var(--muted);
+
+        font-size: 10px;
+    }
+
+
+    .section li {
+        margin-bottom: 6px;
+    }
+
+
+    .highlight {
+
+        margin-top: 14px;
+
+        padding: 13px 15px;
+
+        border-left:
+            3px solid var(--purple);
+
+        border-radius: 9px;
+
+        background:
+            rgba(141,92,255,0.07);
+
+        color: #c8c2d3;
+
+        font-size: 9px;
+    }
+
+
+    /* ================================
+       FOOTER
+       ================================ */
+
+    footer {
+
+        width:
+            min(900px, 92%);
+
+        margin:
+            0 auto 35px;
+
+        padding-top: 20px;
+
+        border-top:
+            1px solid var(--border);
+
+        text-align: center;
+
+        color: #666171;
+
+        font-size: 8px;
+    }
+
+
+    @media (max-width: 600px) {
+
+        main {
+            margin-top: 30px;
+        }
+
+        .hero {
+            padding: 25px 20px;
+        }
+
+        .section {
+            padding: 20px;
+        }
+
+    }
+
+</style>
+
+</head><body><header><nav class="nav">
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <div class="brand-icon">
+            B
+        </div>
+
+        Buzz<span>Net</span>
+
+    </a>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← Back to BuzzNet
+    </a>
+
+</nav>
+
+</header><main><section class="hero">
+
+    <div class="eyebrow">
+        BUZZNET · LEGAL
+    </div>
+
+    <h1>
+        Terms of Service
+    </h1>
+
+    <p>
+        These terms explain the basic rules for
+        using BuzzNet and the responsibilities of
+        everyone who uses the platform.
+    </p>
+
+    <div class="updated">
+        Last updated: August 31, 2026
+    </div>
+
+</section>
+
+
+
+<div class="content">
+
+
+    <section class="section">
+
+        <h2>1. Acceptance of Terms</h2>
+
+        <p>
+            By creating an account or using BuzzNet,
+            you agree to follow these Terms of Service.
+            If you do not agree with these terms, you
+            should not use the platform.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>2. Your BuzzNet Account</h2>
+
+        <p>
+            You are responsible for providing accurate
+            information when creating your account and
+            for keeping your account credentials secure.
+        </p>
+
+        <ul>
+            <li>Use a valid email address.</li>
+            <li>Do not impersonate another person.</li>
+            <li>Do not share your password with others.</li>
+            <li>Keep your account information up to date.</li>
+        </ul>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>3. Community Standards</h2>
+
+        <p>
+            BuzzNet is designed for people to connect,
+            communicate, discover content and express
+            themselves.
+        </p>
+
+        <p>
+            Users must not use BuzzNet to distribute
+            illegal content, deliberately harass others,
+            threaten people, engage in fraud, or attempt
+            to compromise the security of the platform.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>4. Your Content</h2>
+
+        <p>
+            You remain responsible for content that you
+            post, upload, or share through BuzzNet.
+            You should only publish content that you
+            have the right to use.
+        </p>
+
+        <div class="highlight">
+            Think before you post. Public content may
+            potentially be viewed, copied, or shared by
+            other users.
+        </div>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>5. Intellectual Property</h2>
+
+        <p>
+            BuzzNet's name, branding, interface,
+            original designs, software and platform
+            materials may be protected by applicable
+            intellectual-property laws.
+        </p>
+
+        <p>
+            You may not copy, reproduce, modify, or
+            redistribute protected BuzzNet materials
+            without appropriate permission.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>6. AI Features</h2>
+
+        <p>
+            BuzzNet may provide AI-powered features,
+            including the assistant known as
+            <strong>ik</strong>.
+        </p>
+
+        <p>
+            AI-generated responses may contain mistakes
+            or incomplete information. Users should
+            independently evaluate important information
+            before relying on it.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>7. Account Restrictions</h2>
+
+        <p>
+            BuzzNet may restrict, suspend, or terminate
+            accounts that violate these terms, applicable
+            laws, or platform rules, subject to applicable
+            rights and procedures.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>8. Platform Availability</h2>
+
+        <p>
+            We aim to keep BuzzNet available and
+            reliable, but online services can experience
+            maintenance, outages, technical failures,
+            or other interruptions.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>9. Privacy</h2>
+
+        <p>
+            Your use of BuzzNet is also subject to the
+            platform's Privacy Policy, which explains
+            how information may be collected, used,
+            stored, and protected.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>10. Changes to These Terms</h2>
+
+        <p>
+            These terms may be updated as BuzzNet
+            develops. When significant changes are made,
+            appropriate notice may be provided through
+            the platform.
+        </p>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>11. Contact</h2>
+
+        <p>
+            If you have questions about these Terms of
+            Service, use the official BuzzNet contact
+            channel provided by the platform.
+        </p>
+
+    </section>
+
+
+</div>
+
+</main><footer>© 2026 BuzzNet · Connect · Discover · Create
+
+</footer></body>
+</html>

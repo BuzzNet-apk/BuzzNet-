@@ -1,0 +1,1104 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d">
+    <meta name="description" content="Explore BuzzNet — discover people, posts and trending topics."><title>Explore · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+        --surface-3: #211d2c;
+        --text: #f8f6ff;
+        --muted: #9993a8;
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+        --border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+        padding-bottom: 95px;
+
+        background:
+            radial-gradient(
+                circle at 85% 0%,
+                rgba(141, 92, 255, 0.13),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 5% 30%,
+                rgba(216, 177, 90, 0.07),
+                transparent 25%
+            ),
+            var(--bg);
+
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+    }
+
+    button,
+    input {
+        font: inherit;
+    }
+
+    button {
+        border: 0;
+        cursor: pointer;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* ================= TOP BAR ================= */
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 20px;
+
+        background: rgba(8, 7, 13, 0.88);
+        border-bottom: 1px solid var(--border);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+    .back-btn {
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+
+        font-size: 21px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .title h1 {
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .title p {
+        color: var(--muted);
+        font-size: 9px;
+        margin-top: 2px;
+    }
+
+    .ik-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        padding: 9px 12px;
+
+        border-radius: 11px;
+
+        background: rgba(216, 177, 90, 0.08);
+        border: 1px solid rgba(216, 177, 90, 0.25);
+
+        color: var(--gold-light);
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+
+    /* ================= MAIN ================= */
+
+    .container {
+        width: min(780px, calc(100% - 24px));
+        margin: auto;
+        padding-top: 28px;
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        padding: 5px 7px 5px 15px;
+
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 17px;
+
+        transition: 0.2s ease;
+    }
+
+    .search-box:focus-within {
+        border-color: rgba(141, 92, 255, 0.45);
+        box-shadow: 0 0 0 3px rgba(141, 92, 255, 0.05);
+    }
+
+    .search-icon {
+        color: var(--muted);
+        font-size: 19px;
+    }
+
+    #searchInput {
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 12px 0;
+
+        background: transparent;
+        border: 0;
+        outline: 0;
+
+        color: var(--text);
+    }
+
+    #searchInput::placeholder {
+        color: var(--muted);
+    }
+
+    .search-button {
+        padding: 10px 15px;
+
+        border-radius: 12px;
+
+        background: linear-gradient(
+            135deg,
+            var(--gold),
+            var(--purple)
+        );
+
+        color: #09080d;
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+
+    /* ================= SECTION ================= */
+
+    .section {
+        margin-top: 30px;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 14px;
+    }
+
+    .section-header h2 {
+        font-size: 19px;
+    }
+
+    .section-header span {
+        color: var(--gold-light);
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+
+    /* ================= TRENDING ================= */
+
+    .trends {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 11px;
+    }
+
+    .trend {
+        padding: 16px;
+
+        border-radius: 17px;
+
+        background: var(--surface);
+        border: 1px solid var(--border);
+
+        transition: 0.2s ease;
+    }
+
+    .trend:hover {
+        transform: translateY(-2px);
+        border-color: rgba(141, 92, 255, 0.3);
+    }
+
+    .trend-number {
+        color: var(--muted);
+        font-size: 10px;
+    }
+
+    .trend h3 {
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+    .trend p {
+        margin-top: 4px;
+
+        color: var(--muted);
+        font-size: 10px;
+    }
+
+
+    /* ================= PEOPLE ================= */
+
+    .people {
+        display: flex;
+        gap: 11px;
+
+        overflow-x: auto;
+        padding-bottom: 4px;
+
+        scrollbar-width: none;
+    }
+
+    .people::-webkit-scrollbar {
+        display: none;
+    }
+
+    .person {
+        min-width: 145px;
+
+        padding: 16px;
+
+        text-align: center;
+
+        border-radius: 18px;
+
+        background: var(--surface);
+        border: 1px solid var(--border);
+    }
+
+    .person-avatar {
+        width: 52px;
+        height: 52px;
+
+        display: grid;
+        place-items: center;
+
+        margin: 0 auto 9px;
+
+        border-radius: 50%;
+
+        background: linear-gradient(
+            135deg,
+            var(--purple),
+            var(--gold)
+        );
+
+        font-weight: 800;
+    }
+
+    .person h3 {
+        font-size: 13px;
+    }
+
+    .person p {
+        margin-top: 3px;
+
+        color: var(--muted);
+        font-size: 9px;
+    }
+
+    .follow-btn {
+        width: 100%;
+
+        margin-top: 11px;
+        padding: 8px;
+
+        border-radius: 10px;
+
+        background: rgba(216, 177, 90, 0.1);
+        border: 1px solid rgba(216, 177, 90, 0.25);
+
+        color: var(--gold-light);
+
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .follow-btn.following {
+        background: rgba(141, 92, 255, 0.12);
+        border-color: rgba(141, 92, 255, 0.25);
+        color: var(--purple-light);
+    }
+
+
+    /* ================= DISCOVER POSTS ================= */
+
+    .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .post {
+        padding: 17px;
+
+        border-radius: 18px;
+
+        background: var(--surface);
+        border: 1px solid var(--border);
+    }
+
+    .post-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .post-avatar {
+        width: 39px;
+        height: 39px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 50%;
+
+        background: linear-gradient(
+            135deg,
+            var(--purple),
+            var(--gold)
+        );
+
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .post-author {
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .post-handle {
+        color: var(--muted);
+        font-size: 9px;
+    }
+
+    .post-text {
+        margin-top: 13px;
+
+        color: #ddd9e7;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .post-actions {
+        display: flex;
+        gap: 8px;
+
+        margin-top: 14px;
+    }
+
+    .post-action {
+        padding: 7px 10px;
+
+        border-radius: 9px;
+
+        background: var(--surface-2);
+        color: var(--muted);
+
+        font-size: 10px;
+    }
+
+
+    /* ================= SEARCH RESULTS ================= */
+
+    #searchResults {
+        display: none;
+    }
+
+    .result {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        padding: 13px;
+
+        margin-bottom: 8px;
+
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+    }
+
+    .result-avatar {
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+        place-items: center;
+
+        flex: 0 0 38px;
+
+        border-radius: 50%;
+
+        background: linear-gradient(
+            135deg,
+            var(--gold),
+            var(--purple)
+        );
+
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+    .result-info {
+        min-width: 0;
+    }
+
+    .result-info strong {
+        display: block;
+        font-size: 12px;
+    }
+
+    .result-info span {
+        color: var(--muted);
+        font-size: 9px;
+    }
+
+
+    /* ================= BOTTOM NAV ================= */
+
+    .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 10px;
+        z-index: 200;
+
+        width: min(650px, calc(100% - 22px));
+        height: 65px;
+
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        padding: 5px;
+
+        background: rgba(17, 16, 25, 0.95);
+
+        border: 1px solid var(--border);
+        border-radius: 21px;
+
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.55);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-item {
+        min-width: 55px;
+        height: 53px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 2px;
+
+        border-radius: 15px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+        font-weight: 600;
+    }
+
+    .nav-item.active {
+        color: var(--gold-light);
+        background: rgba(216, 177, 90, 0.08);
+    }
+
+    .nav-icon {
+        font-size: 19px;
+        line-height: 1;
+    }
+
+    .ik-nav-icon {
+        width: 34px;
+        height: 34px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 11px;
+
+        background: linear-gradient(
+            135deg,
+            var(--gold),
+            var(--purple)
+        );
+
+        color: #09080d;
+        font-weight: 800;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 520px) {
+
+        .topbar {
+            padding: 0 12px;
+        }
+
+        .title h1 {
+            font-size: 17px;
+        }
+
+        .container {
+            width: calc(100% - 18px);
+            padding-top: 22px;
+        }
+
+        .trends {
+            grid-template-columns: 1fr;
+        }
+
+        .search-button {
+            padding: 10px 12px;
+        }
+
+        .bottom-nav {
+            width: calc(100% - 14px);
+        }
+
+    }
+</style>
+
+</head><body><!-- ================= TOP BAR ================= -->
+
+<header class="topbar">
+
+    <a href="index.html" class="back-btn" aria-label="Back">
+        ←
+    </a>
+
+    <div class="title">
+        <h1>Explore</h1>
+        <p>Discover what's buzzing</p>
+    </div>
+
+    <a href="ik.html" class="ik-link">
+        ✦ ik
+    </a>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <span class="search-icon">⌕</span>
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search BuzzNet..."
+            autocomplete="off"
+        >
+
+        <button
+            class="search-button"
+            id="searchButton"
+        >
+            Search
+        </button>
+
+    </div>
+
+
+    <!-- Search Results -->
+
+    <section
+        class="section"
+        id="searchResults"
+    >
+
+        <div class="section-header">
+            <h2>Results</h2>
+            <span id="resultCount">0 found</span>
+        </div>
+
+        <div id="resultsList"></div>
+
+    </section>
+
+
+    <!-- Trending -->
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>🔥 Trending</h2>
+            <span>Today</span>
+        </div>
+
+        <div class="trends">
+
+            <button class="trend" data-search="technology">
+                <span class="trend-number">01 · TRENDING</span>
+                <h3>#Technology</h3>
+                <p>24.8K posts</p>
+            </button>
+
+            <button class="trend" data-search="music">
+                <span class="trend-number">02 · TRENDING</span>
+                <h3>#Music</h3>
+                <p>18.4K posts</p>
+            </button>
+
+            <button class="trend" data-search="business">
+                <span class="trend-number">03 · TRENDING</span>
+                <h3>#Business</h3>
+                <p>15.2K posts</p>
+            </button>
+
+            <button class="trend" data-search="football">
+                <span class="trend-number">04 · TRENDING</span>
+                <h3>#Football</h3>
+                <p>12.9K posts</p>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- People -->
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>People to follow</h2>
+            <span>See all</span>
+        </div>
+
+        <div class="people">
+
+            <article class="person">
+
+                <div class="person-avatar">A</div>
+
+                <h3>Alex Morgan</h3>
+                <p>@alexm</p>
+
+                <button class="follow-btn">
+                    Follow
+                </button>
+
+            </article>
+
+
+            <article class="person">
+
+                <div class="person-avatar">J</div>
+
+                <h3>Jordan Lee</h3>
+                <p>@jordanl</p>
+
+                <button class="follow-btn">
+                    Follow
+                </button>
+
+            </article>
+
+
+            <article class="person">
+
+                <div class="person-avatar">S</div>
+
+                <h3>Sarah Kim</h3>
+                <p>@sarahk</p>
+
+                <button class="follow-btn">
+                    Follow
+                </button>
+
+            </article>
+
+
+            <article class="person">
+
+                <div class="person-avatar">D</div>
+
+                <h3>David Cole</h3>
+                <p>@davidc</p>
+
+                <button class="follow-btn">
+                    Follow
+                </button>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- Discover Posts -->
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Discover posts</h2>
+            <span>Fresh</span>
+        </div>
+
+        <div class="posts">
+
+            <article class="post">
+
+                <div class="post-top">
+
+                    <div class="post-avatar">
+                        M
+                    </div>
+
+                    <div>
+                        <div class="post-author">
+                            Maya
+                        </div>
+
+                        <div class="post-handle">
+                            @maya · 2h
+                        </div>
+                    </div>
+
+                </div>
+
+                <p class="post-text">
+                    The future belongs to people who keep
+                    learning, creating and adapting. ✨
+                </p>
+
+                <div class="post-actions">
+                    <button class="post-action">♡ 248</button>
+                    <button class="post-action">💬 31</button>
+                    <button class="post-action">↗ Share</button>
+                </div>
+
+            </article>
+
+
+            <article class="post">
+
+                <div class="post-top">
+
+                    <div class="post-avatar">
+                        K
+                    </div>
+
+                    <div>
+                        <div class="post-author">
+                            Kevin
+                        </div>
+
+                        <div class="post-handle">
+                            @kevin · 4h
+                        </div>
+                    </div>
+
+                </div>
+
+                <p class="post-text">
+                    Building something great doesn't happen
+                    overnight. Keep going. 🚀
+                </p>
+
+                <div class="post-actions">
+                    <button class="post-action">♡ 172</button>
+                    <button class="post-action">💬 18</button>
+                    <button class="post-action">↗ Share</button>
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+    <a href="index.html" class="nav-item">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="explore.html" class="nav-item active">
+        <span class="nav-icon">⌕</span>
+        <span>Explore</span>
+    </a>
+
+    <a href="ik.html" class="nav-item">
+        <span class="ik-nav-icon">✦</span>
+        <span>ik</span>
+    </a>
+
+    <a href="notifications.html" class="nav-item">
+        <span class="nav-icon">♡</span>
+        <span>Alerts</span>
+    </a>
+
+    <a href="profile.html" class="nav-item">
+        <span class="nav-icon">◯</span>
+        <span>Profile</span>
+    </a>
+
+</nav>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const searchButton =
+        document.getElementById("searchButton");
+
+    const searchResults =
+        document.getElementById("searchResults");
+
+    const resultsList =
+        document.getElementById("resultsList");
+
+    const resultCount =
+        document.getElementById("resultCount");
+
+
+    const people = [
+        {
+            name: "Alex Morgan",
+            username: "@alexm",
+            letter: "A"
+        },
+        {
+            name: "Jordan Lee",
+            username: "@jordanl",
+            letter: "J"
+        },
+        {
+            name: "Sarah Kim",
+            username: "@sarahk",
+            letter: "S"
+        },
+        {
+            name: "David Cole",
+            username: "@davidc",
+            letter: "D"
+        },
+        {
+            name: "Maya",
+            username: "@maya",
+            letter: "M"
+        },
+        {
+            name: "Kevin",
+            username: "@kevin",
+            letter: "K"
+        }
+    ];
+
+
+    function performSearch(value) {
+
+        const query =
+            value.trim().toLowerCase();
+
+
+        if (!query) {
+
+            searchResults.style.display = "none";
+
+            resultsList.innerHTML = "";
+
+            return;
+
+        }
+
+
+        const matches =
+            people.filter(person =>
+                person.name.toLowerCase().includes(query) ||
+                person.username.toLowerCase().includes(query)
+            );
+
+
+        resultsList.innerHTML = "";
+
+
+        if (matches.length === 0) {
+
+            resultsList.innerHTML = `
+                <div class="result">
+                    <div class="result-avatar">?</div>
+                    <div class="result-info">
+                        <strong>No results found</strong>
+                        <span>Try another search</span>
+                    </div>
+                </div>
+            `;
+
+        } else {
+
+            matches.forEach(person => {
+
+    resultsList.innerHTML += `
+        <div class="result">
+            <div class="result-avatar">
+                ${person.letter}
+            </div>
+
+            <div class="result-info">
+                <strong>${person.name}</strong>
+                <span>${person.username}</span>
+            </div>
+        </div>
+    `;
+
+});
+
+searchResults.style.display = "block";
+resultCount.textContent = `${matches.length} found`;
+
+}
+
+searchButton.addEventListener("click", () => {
+    performSearch(searchInput.value);
+});
+
+searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        performSearch(searchInput.value);
+    }
+});
+
+searchInput.addEventListener("input", () => {
+    if (searchInput.value.trim() === "") {
+        searchResults.style.display = "none";
+        resultsList.innerHTML = "";
+    }
+});
+
+document.querySelectorAll(".trend").forEach(trend => {
+
+    trend.addEventListener("click", () => {
+
+        const value = trend.dataset.search;
+
+        searchInput.value = value;
+
+        performSearch(value);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+});
+
+document.querySelectorAll(".follow-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        if (button.classList.contains("following")) {
+
+            button.classList.remove("following");
+            button.textContent = "Follow";
+
+        } else {
+
+            button.classList.add("following");
+            button.textContent = "Following";
+
+        }
+
+    });
+
+});
+
+</script>
+
+<!-- BUZZNET CORE SCRIPTS -->
+
+<script src="storage.js"></script>
+<script src="utils.js"></script>
+<script src="auth.js"></script>
+<script src="router.js"></script>
+<script src="search.js"></script>
+<script src="notifications.js"></script>
+<script src="messages.js"></script>
+<script src="profile.js"></script>
+<script src="posts.js"></script>
+<script src="feed.js"></script>
+<script src="settings.js"></script>
+<script src="explore.js"></script>
+<script src="upload.js"></script>
+<script src="ik-core.js"></script>
+<script src="ik-engine.js"></script>
+<script src="modules.js"></script>
+<script src="app.js"></script>
+<script src="loader.js"></script>
+
+</body>
+</html>

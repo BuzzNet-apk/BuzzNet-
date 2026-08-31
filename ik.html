@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d">
+    <meta name="description" content="ik — your AI assistant inside BuzzNet."><title>ik · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link rel="stylesheet" href="ik.css">
+
+</head><body><!-- ================= TOP BAR ================= -->
+
+<header class="ik-topbar">
+
+    <a href="index.html" class="back-button" aria-label="Back to BuzzNet">
+        ←
+    </a>
+
+    <div class="ik-brand">
+
+        <div class="ik-logo">
+            ✦
+        </div>
+
+        <div>
+            <div class="ik-name">ik</div>
+            <div class="ik-status">
+                <span class="status-dot"></span>
+                AI assistant
+            </div>
+        </div>
+
+    </div>
+
+    <button
+        class="new-chat-button"
+        id="newChatButton"
+        aria-label="Start a new conversation"
+    >
+        ＋
+    </button>
+
+</header>
+
+
+<!-- ================= CHAT ================= -->
+
+<main class="ik-main">
+
+    <section
+        class="chat-area"
+        id="chatArea"
+        aria-live="polite"
+    >
+
+        <!-- Welcome Screen -->
+
+        <div class="ik-welcome" id="ikWelcome">
+
+            <div class="welcome-logo">
+                ✦
+            </div>
+
+            <h1>Hello, I'm <span>ik</span>.</h1>
+
+            <p>
+                Your intelligent assistant inside BuzzNet.
+                Ask me anything and let's get started.
+            </p>
+
+
+            <!-- Suggested prompts -->
+
+            <div class="suggestions">
+
+                <button
+                    class="suggestion"
+                    data-prompt="Give me some creative ideas."
+                >
+                    <span>✦</span>
+                    Give me creative ideas
+                </button>
+
+                <button
+                    class="suggestion"
+                    data-prompt="Help me write something."
+                >
+                    <span>✎</span>
+                    Help me write something
+                </button>
+
+                <button
+                    class="suggestion"
+                    data-prompt="Explain something to me simply."
+                >
+                    <span>?</span>
+                    Explain something
+                </button>
+
+                <button
+                    class="suggestion"
+                    data-prompt="What can you help me with?"
+                >
+                    <span>◈</span>
+                    What can you help me with?
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Messages are inserted here by ik.js -->
+
+        <div
+            class="messages"
+            id="messages"
+        ></div>
+
+
+        <!-- Typing indicator -->
+
+        <div
+            class="typing-indicator"
+            id="typingIndicator"
+            aria-hidden="true"
+        >
+
+            <div class="message-avatar">
+                ✦
+            </div>
+
+            <div class="typing-bubble">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INPUT ================= -->
+
+    <section class="composer-area">
+
+        <div class="composer">
+
+            <textarea
+                id="messageInput"
+                rows="1"
+                maxlength="4000"
+                placeholder="Message ik..."
+                aria-label="Message ik"
+            ></textarea>
+
+            <button
+                id="sendButton"
+                class="send-button"
+                aria-label="Send message"
+            >
+                ↑
+            </button>
+
+        </div>
+
+        <p class="composer-note">
+            ik can make mistakes. Check important information.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="ik.js"></script>
+
+</body>
+</html>

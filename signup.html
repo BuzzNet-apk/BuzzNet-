@@ -1,0 +1,1171 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Sign Up · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+
+        --text: #f8f6ff;
+        --muted: #9993a8;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+
+        --border: rgba(255,255,255,0.08);
+
+        --danger: #ff667a;
+        --success: #6ee7a0;
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 25px 15px;
+
+        background:
+            radial-gradient(
+                circle at 85% 5%,
+                rgba(141,92,255,0.16),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 10% 90%,
+                rgba(216,177,90,0.08),
+                transparent 30%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    button,
+    input {
+        font: inherit;
+    }
+
+
+    button {
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* =================================================
+       CARD
+       ================================================= */
+
+    .signup-card {
+
+        width:
+            min(450px, 100%);
+
+        padding:
+            30px 25px 25px;
+
+        border-radius: 25px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(23,21,33,0.98),
+                rgba(13,12,19,0.98)
+            );
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 30px 90px rgba(0,0,0,0.5);
+
+        backdrop-filter:
+            blur(20px);
+    }
+
+
+    /* =================================================
+       BRAND
+       ================================================= */
+
+    .brand {
+
+        text-align: center;
+
+        margin-bottom: 25px;
+    }
+
+
+    .brand-icon {
+
+        width: 64px;
+        height: 64px;
+
+        display: grid;
+
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-size: 25px;
+
+        font-weight: 800;
+
+        box-shadow:
+            0 12px 35px
+            rgba(141,92,255,0.18);
+    }
+
+
+    .brand h1 {
+
+        margin-top: 14px;
+
+        font-size: 24px;
+
+        font-weight: 800;
+
+        letter-spacing:
+            -0.04em;
+    }
+
+
+    .brand h1 span {
+
+        color:
+            var(--gold-light);
+    }
+
+
+    .brand p {
+
+        margin-top: 6px;
+
+        color:
+            var(--muted);
+
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =================================================
+       FORM
+       ================================================= */
+
+    .form-group {
+
+        margin-top: 15px;
+    }
+
+
+    .form-group label {
+
+        display: block;
+
+        margin-bottom: 7px;
+
+        color:
+            #d8d3e2;
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    .input-wrap {
+
+        position: relative;
+    }
+
+
+    .input-icon {
+
+        position: absolute;
+
+        left: 13px;
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        color:
+            var(--muted);
+
+        font-size: 14px;
+
+        pointer-events: none;
+    }
+
+
+    .input-wrap input {
+
+        width: 100%;
+
+        height: 47px;
+
+        padding:
+            0 13px 0 40px;
+
+        border-radius: 13px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        outline: none;
+
+        color:
+            var(--text);
+
+        font-size: 10px;
+
+        transition:
+            border 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+
+    .input-wrap input:focus {
+
+        border-color:
+            rgba(141,92,255,0.55);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(141,92,255,0.08);
+    }
+
+
+    .input-wrap input::placeholder {
+        color: #716b7c;
+    }
+
+
+    .password-toggle {
+
+        position: absolute;
+
+        right: 11px;
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        background:
+            transparent;
+
+        color:
+            var(--muted);
+
+        font-size: 15px;
+    }
+
+
+    .password-wrap input {
+        padding-right: 42px;
+    }
+
+
+    /* =================================================
+       USERNAME
+       ================================================= */
+
+    .username-status {
+
+        min-height: 14px;
+
+        margin-top: 5px;
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    .username-status.available {
+        color: var(--success);
+    }
+
+
+    .username-status.taken {
+        color: var(--danger);
+    }
+
+
+    /* =================================================
+       PASSWORD STRENGTH
+       ================================================= */
+
+    .password-strength {
+
+        display: flex;
+
+        gap: 4px;
+
+        margin-top: 7px;
+    }
+
+
+    .strength-bar {
+
+        height: 3px;
+
+        flex: 1;
+
+        border-radius: 10px;
+
+        background:
+            var(--surface-2);
+    }
+
+
+    .strength-text {
+
+        margin-top: 5px;
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    /* =================================================
+       TERMS
+       ================================================= */
+
+    .terms {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+        margin-top: 17px;
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+
+        line-height: 1.55;
+    }
+
+
+    .terms input {
+
+        margin-top: 2px;
+
+        accent-color:
+            var(--purple);
+
+        flex: 0 0 auto;
+    }
+
+
+    .terms a {
+
+        color:
+            var(--gold-light);
+
+        font-weight: 600;
+    }
+
+
+    /* =================================================
+       BUTTON
+       ================================================= */
+
+    .signup-btn {
+
+        width: 100%;
+
+        height: 48px;
+
+        margin-top: 18px;
+
+        border-radius: 13px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        box-shadow:
+            0 10px 30px
+            rgba(141,92,255,0.15);
+
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+
+    .signup-btn:hover {
+        transform:
+            translateY(-1px);
+    }
+
+
+    .signup-btn:disabled {
+
+        opacity: 0.45;
+
+        cursor:
+            not-allowed;
+
+        transform:
+            none;
+    }
+
+
+    /* =================================================
+       DIVIDER
+       ================================================= */
+
+    .divider {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin:
+            21px 0;
+    }
+
+
+    .divider::before,
+    .divider::after {
+
+        content: "";
+
+        height: 1px;
+
+        flex: 1;
+
+        background:
+            var(--border);
+    }
+
+
+    .divider span {
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    /* =================================================
+       LOGIN
+       ================================================= */
+
+    .login-text {
+
+        text-align: center;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .login-text a {
+
+        color:
+            var(--gold-light);
+
+        font-weight: 700;
+    }
+
+
+    /* =================================================
+       MESSAGE
+       ================================================= */
+
+    .form-message {
+
+        display: none;
+
+        margin-top: 12px;
+
+        padding: 10px;
+
+        border-radius: 10px;
+
+        font-size: 8px;
+
+        line-height: 1.5;
+    }
+
+
+    .form-message.error {
+
+        display: block;
+
+        color:
+            var(--danger);
+
+        background:
+            rgba(255,102,122,0.07);
+
+        border:
+            1px solid
+            rgba(255,102,122,0.14);
+    }
+
+
+    .form-message.success {
+
+        display: block;
+
+        color:
+            var(--success);
+
+        background:
+            rgba(110,231,160,0.07);
+
+        border:
+            1px solid
+            rgba(110,231,160,0.14);
+    }
+
+
+    /* =================================================
+       FOOTER
+       ================================================= */
+
+    .footer {
+
+        margin-top: 18px;
+
+        text-align: center;
+
+        color:
+            #666171;
+
+        font-size: 7px;
+    }
+
+
+    /* =================================================
+       RESPONSIVE
+       ================================================= */
+
+    @media (max-width: 420px) {
+
+        body {
+            padding:
+                15px 10px;
+        }
+
+        .signup-card {
+            padding:
+                25px 18px 20px;
+        }
+
+    }
+
+</style>
+
+</head><body><main class="signup-card">
+
+
+    <!-- =================================================
+         BRAND
+         ================================================= -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            B
+        </div>
+
+        <h1>
+            Join <span>BuzzNet</span>
+        </h1>
+
+        <p>
+            Create your account and enter the
+            next generation of social connection.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         FORM
+         ================================================= -->
+
+    <form id="signupForm" novalidate>
+
+
+        <!-- Name -->
+
+        <div class="form-group">
+
+            <label for="fullName">
+                FULL NAME
+            </label>
+
+
+            <div class="input-wrap">
+
+                <span class="input-icon">
+                    ◯
+                </span>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Username -->
+
+        <div class="form-group">
+
+            <label for="username">
+                USERNAME
+            </label>
+
+
+            <div class="input-wrap">
+
+                <span class="input-icon">
+                    @
+                </span>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Choose a username"
+                    autocomplete="username"
+                    maxlength="20"
+                >
+
+            </div>
+
+
+            <div
+                class="username-status"
+                id="usernameStatus"
+            ></div>
+
+        </div>
+
+
+
+        <!-- Email -->
+
+        <div class="form-group">
+
+            <label for="email">
+                EMAIL ADDRESS
+            </label>
+
+
+            <div class="input-wrap">
+
+                <span class="input-icon">
+                    ✉
+                </span>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Password -->
+
+        <div class="form-group">
+
+            <label for="password">
+                PASSWORD
+            </label>
+
+
+            <div
+                class="input-wrap password-wrap"
+            >
+
+                <span class="input-icon">
+                    ◆
+                </span>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a strong password"
+                    autocomplete="new-password"
+                >
+
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="password"
+                    aria-label="Show password"
+                >
+                    ◉
+                </button>
+
+            </div>
+
+
+            <div class="password-strength">
+
+                <span class="strength-bar"></span>
+                <span class="strength-bar"></span>
+                <span class="strength-bar"></span>
+                <span class="strength-bar"></span>
+
+            </div>
+
+
+            <div
+                class="strength-text"
+                id="strengthText"
+            >
+                Use at least 8 characters.
+            </div>
+
+        </div>
+
+
+
+        <!-- Confirm password -->
+
+        <div class="form-group">
+
+            <label for="confirmPassword">
+                CONFIRM PASSWORD
+            </label>
+
+
+            <div
+                class="input-wrap password-wrap"
+            >
+
+                <span class="input-icon">
+                    ◆
+                </span>
+
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                >
+
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="confirmPassword"
+                    aria-label="Show password"
+                >
+                    ◉
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Terms -->
+
+        <label class="terms">
+
+            <input
+                type="checkbox"
+                id="terms"
+            >
+
+            <span>
+                I agree to the
+                <a href="#" id="termsLink">
+                    BuzzNet Terms of Service
+                </a>
+                and
+                <a href="#" id="privacyLink">
+                    Privacy Policy
+                </a>.
+            </span>
+
+        </label>
+
+
+
+        <!-- Message -->
+
+        <div
+            class="form-message"
+            id="formMessage"
+        ></div>
+
+
+
+        <!-- Submit -->
+
+        <button
+            type="submit"
+            class="signup-btn"
+            id="signupBtn"
+        >
+            CREATE BUZZNET ACCOUNT
+        </button>
+
+
+    </form>
+
+
+
+    <!-- Divider -->
+
+    <div class="divider">
+        <span>ALREADY A MEMBER?</span>
+    </div>
+
+
+
+    <!-- Login -->
+
+    <div class="login-text">
+
+        Already have an account?
+
+        <a href="login.html">
+            Log in
+        </a>
+
+    </div>
+
+
+
+    <div class="footer">
+        BuzzNet · Connect · Discover · Create
+    </div>
+
+
+</main>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+     ================================================= -->
+
+<script>
+
+    const signupForm =
+        document.getElementById(
+            "signupForm"
+        );
+
+    const fullName =
+        document.getElementById(
+            "fullName"
+        );
+
+    const username =
+        document.getElementById(
+            "username"
+        );
+
+    const email =
+        document.getElementById(
+            "email"
+        );
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+    const confirmPassword =
+        document.getElementById(
+            "confirmPassword"
+        );
+
+    const terms =
+        document.getElementById(
+            "terms"
+        );
+
+    const signupBtn =
+        document.getElementById(
+            "signupBtn"
+        );
+
+    const formMessage =
+        document.getElementById(
+            "formMessage"
+        );
+
+    const usernameStatus =
+        document.getElementById(
+            "usernameStatus"
+        );
+
+    const strengthText =
+        document.getElementById(
+            "strengthText"
+        );
+
+    const strengthBars =
+        document.querySelectorAll(
+            ".strength-bar"
+        );
+
+
+
+    /* =================================================
+       PASSWORD VISIBILITY
+       ================================================= */
+
+    document
+        .querySelectorAll(".password-toggle")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const target =
+                        document.getElementById(
+                            button.dataset.target
+                        );
+
+
+                    if (
+                        target.type ===
+                        "password"
+                    ) {
+
+                        target.type =
+                            "text";
+
+                        button.textContent =
+                            "◌";
+
+                    } else {
+
+                        target.type =
+                            "password";
+
+                        button.textContent =
+                            "◉";
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+    /* =================================================
+       PASSWORD STRENGTH
+       ================================================= */
+
+    password.addEventListener(
+        "input",
+        () => {
+
+            const value =
+                password.value;
+
+            let score = 0;
+
+
+            if (value.length >= 8)
+                score++;
+
+            if (/[A-Z]/.test(value))
+                score++;
+
+            if (/[0-9]/.test(value))
+                score++;
+
+            if (/[^A-Za-z0-9]/.test(value))
+                score++;
+
+
+            strengthBars.forEach(
+                (bar, index) => {
+
+                    if (index < score) {
+
+                        bar.style.background =
+                            "linear-gradient(90deg,#d8b15a,#8d5cff)";
+
+                    } else {
+
+                        bar.style.background =
+                            "var(--surface-2)";
+
+                    }
+
+                }
+            );
+
+
+            if (!value) {
+
+                strengthText.textContent =
+                    "Use at least 8 characters.";
+
+            } else if (score <= 1) {
+
+                strengthText.textContent =
+                    "Weak password.";
+
+            } else if (score <= 2) {
+
+                strengthText.textContent =
+                    "Fair password.";
+
+            } else if (score === 3) {
+
+                strengthText.textContent =
+                    "Good password.";
+
+            } else {
+
+                strengthText.textContent =
+                    "Strong password.";
+
+            }
+
+        }
+    );
+
+
+
+    /* =================================================
+       USERNAME CHECK
+       ================================================= */
+
+    username.addEventListener(
+        "input",
+        () => {
+
+            const value =
+                username.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!value) {
+
+                usernameStatus.textContent =
+                    "";
+
+                usernameStatus.className =
+                    "username-status";
+
+                return;
+
+            }
+
+
+            if (
+                !/^[a-z0-9_.]+$/.test(value)
+            ) {
+
+                usernameStatus.textContent =
+                    "Use only letters, numbers, underscores or dots.";
+
+                usernameStatu

@@ -1,0 +1,1338 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Messages · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+        --surface-3: #211d2c;
+
+        --text: #f8f6ff;
+        --muted: #9993a8;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+
+        --border: rgba(255,255,255,0.08);
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        min-height: 100vh;
+        padding-bottom: 95px;
+
+        background:
+            radial-gradient(
+                circle at 85% 0%,
+                rgba(141,92,255,0.13),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 10% 30%,
+                rgba(216,177,90,0.07),
+                transparent 25%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    button,
+    input {
+        font: inherit;
+    }
+
+
+    button {
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* =================================================
+       TOP BAR
+       ================================================= */
+
+    .topbar {
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 20px;
+
+        background:
+            rgba(8,7,13,0.88);
+
+        border-bottom:
+            1px solid var(--border);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .back-btn {
+
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--text);
+
+        font-size: 21px;
+    }
+
+
+    .title {
+        text-align: center;
+    }
+
+
+    .title h1 {
+
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+
+    .title p {
+
+        margin-top: 2px;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .compose-btn {
+
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-size: 18px;
+
+        font-weight: 800;
+    }
+
+
+    /* =================================================
+       MAIN
+       ================================================= */
+
+    .container {
+
+        width:
+            min(760px, calc(100% - 24px));
+
+        margin: auto;
+
+        padding-top: 22px;
+    }
+
+
+    /* =================================================
+       SEARCH
+       ================================================= */
+
+    .search {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        padding:
+            4px 12px;
+
+        border-radius: 15px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .search-icon {
+
+        color:
+            var(--muted);
+
+        font-size: 18px;
+    }
+
+
+    #searchInput {
+
+        width: 100%;
+
+        padding:
+            10px 0;
+
+        background:
+            transparent;
+
+        border: 0;
+
+        outline: 0;
+
+        color:
+            var(--text);
+
+        font-size: 11px;
+    }
+
+
+    #searchInput::placeholder {
+        color: var(--muted);
+    }
+
+
+    /* =================================================
+       MESSAGE LIST
+       ================================================= */
+
+    .section {
+
+        margin-top: 23px;
+    }
+
+
+    .section-title {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin:
+            0 4px 10px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 13px;
+    }
+
+
+    .section-title span {
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .message-list {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+
+    .message {
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        padding:
+            13px;
+
+        border-radius: 17px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+
+        cursor: pointer;
+
+        transition:
+            0.2s ease;
+    }
+
+
+    .message:hover {
+
+        transform:
+            translateY(-1px);
+
+        border-color:
+            rgba(141,92,255,0.25);
+    }
+
+
+    .message.unread {
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(141,92,255,0.08),
+                var(--surface)
+            );
+    }
+
+
+    .avatar {
+
+        position: relative;
+
+        width: 47px;
+        height: 47px;
+
+        flex: 0 0 47px;
+
+        display: grid;
+
+        place-items: center;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--purple),
+                var(--gold)
+            );
+
+        color:
+            #09080d;
+
+        font-size: 14px;
+
+        font-weight: 800;
+    }
+
+
+    .online {
+
+        position: absolute;
+
+        right: 0;
+        bottom: 1px;
+
+        width: 12px;
+        height: 12px;
+
+        border-radius: 50%;
+
+        background:
+            #6ee7a0;
+
+        border:
+            2px solid var(--surface);
+    }
+
+
+    .message-info {
+
+        flex: 1;
+
+        min-width: 0;
+    }
+
+
+    .message-top {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+
+    .message-name {
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .message-time {
+
+        flex: 0 0 auto;
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    .message-preview {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        margin-top: 4px;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .unread-dot {
+
+        width: 7px;
+        height: 7px;
+
+        flex: 0 0 7px;
+
+        border-radius: 50%;
+
+        background:
+            var(--gold);
+    }
+
+
+    /* =================================================
+       EMPTY SEARCH
+       ================================================= */
+
+    .empty {
+
+        display: none;
+
+        padding:
+            45px 20px;
+
+        text-align: center;
+    }
+
+
+    .empty-icon {
+
+        width: 58px;
+        height: 58px;
+
+        display: grid;
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 18px;
+
+        background:
+            rgba(141,92,255,0.1);
+
+        color:
+            var(--gold-light);
+
+        font-size: 25px;
+    }
+
+
+    .empty h2 {
+
+        margin-top: 14px;
+
+        font-size: 17px;
+    }
+
+
+    .empty p {
+
+        margin-top: 6px;
+
+        color:
+            var(--muted);
+
+        font-size: 10px;
+    }
+
+
+    /* =================================================
+       CHAT MODAL
+       ================================================= */
+
+    .chat-overlay {
+
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 500;
+
+        display: none;
+
+        background:
+            var(--bg);
+    }
+
+
+    .chat-overlay.show {
+        display: flex;
+
+        flex-direction: column;
+    }
+
+
+    .chat-header {
+
+        height: 68px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        padding:
+            0 15px;
+
+        background:
+            rgba(17,16,25,0.95);
+
+        border-bottom:
+            1px solid var(--border);
+
+        backdrop-filter:
+            blur(20px);
+    }
+
+
+    .chat-back {
+
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 11px;
+
+        background:
+            var(--surface-2);
+
+        color:
+            var(--text);
+
+        font-size: 19px;
+    }
+
+
+    .chat-avatar {
+
+        width: 39px;
+        height: 39px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--purple),
+                var(--gold)
+            );
+
+        color:
+            #09080d;
+
+        font-size: 11px;
+
+        font-weight: 800;
+    }
+
+
+    .chat-user {
+
+        flex: 1;
+    }
+
+
+    .chat-user strong {
+
+        display: block;
+
+        font-size: 11px;
+    }
+
+
+    .chat-user span {
+
+        display: block;
+
+        margin-top: 2px;
+
+        color:
+            #6ee7a0;
+
+        font-size: 8px;
+    }
+
+
+    .chat-body {
+
+        flex: 1;
+
+        overflow-y: auto;
+
+        padding:
+            20px 15px;
+    }
+
+
+    .date-divider {
+
+        margin:
+            8px 0 18px;
+
+        text-align: center;
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    .bubble-row {
+
+        display: flex;
+
+        margin-bottom: 10px;
+    }
+
+
+    .bubble-row.me {
+
+        justify-content: flex-end;
+    }
+
+
+    .bubble {
+
+        max-width: 78%;
+
+        padding:
+            10px 12px;
+
+        border-radius: 15px;
+
+        background:
+            var(--surface-2);
+
+        color:
+            #ddd9e7;
+
+        font-size: 10px;
+
+        line-height: 1.55;
+    }
+
+
+    .bubble-row.me .bubble {
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(141,92,255,0.8),
+                rgba(216,177,90,0.75)
+            );
+
+        color:
+            #09080d;
+    }
+
+
+    .chat-input-area {
+
+        display: flex;
+
+        gap: 8px;
+
+        padding:
+            10px;
+
+        background:
+            rgba(17,16,25,0.98);
+
+        border-top:
+            1px solid var(--border);
+    }
+
+
+    #chatInput {
+
+        flex: 1;
+
+        min-width: 0;
+
+        padding:
+            11px 13px;
+
+        border-radius: 13px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        outline: 0;
+
+        color:
+            var(--text);
+
+        font-size: 10px;
+    }
+
+
+    #chatInput::placeholder {
+        color: var(--muted);
+    }
+
+
+    .send-btn {
+
+        width: 43px;
+        height: 43px;
+
+        flex: 0 0 43px;
+
+        border-radius: 13px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-weight: 800;
+    }
+
+
+    /* =================================================
+       COMPOSE MODAL
+       ================================================= */
+
+    .compose-overlay {
+
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 600;
+
+        display: none;
+
+        align-items: flex-end;
+
+        justify-content: center;
+
+        padding: 15px;
+
+        background:
+            rgba(0,0,0,0.68);
+
+        backdrop-filter:
+            blur(8px);
+    }
+
+
+    .compose-overlay.show {
+        display: flex;
+    }
+
+
+    .compose-card {
+
+        width:
+            min(500px,100%);
+
+        padding: 20px;
+
+        border-radius:
+            22px 22px 16px 16px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .compose-card h2 {
+
+        font-size: 17px;
+    }
+
+
+    .compose-card p {
+
+        margin-top: 5px;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .compose-input {
+
+        width: 100%;
+
+        margin-top: 15px;
+
+        padding:
+            12px;
+
+        border-radius: 12px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        outline: 0;
+
+        color:
+            var(--text);
+
+        font-size: 10px;
+    }
+
+
+    .compose-actions {
+
+        display: flex;
+
+        gap: 8px;
+
+        margin-top: 12px;
+    }
+
+
+    .compose-actions button {
+
+        flex: 1;
+
+        padding: 11px;
+
+        border-radius: 11px;
+
+        font-size: 10px;
+
+        font-weight: 700;
+    }
+
+
+    .cancel-compose {
+
+        background:
+            var(--surface-2);
+
+        color:
+            var(--text);
+    }
+
+
+    .start-chat {
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+    }
+
+
+    /* =================================================
+       BOTTOM NAV
+       ================================================= */
+
+    .bottom-nav {
+
+        position: fixed;
+
+        left: 50%;
+        bottom: 10px;
+
+        z-index: 200;
+
+        width:
+            min(650px, calc(100% - 22px));
+
+        height: 65px;
+
+        transform:
+            translateX(-50%);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content:
+            space-around;
+
+        padding: 5px;
+
+        background:
+            rgba(17,16,25,0.95);
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 21px;
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,0.55);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .nav-item {
+
+        min-width: 55px;
+        height: 53px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 2px;
+
+        border-radius: 15px;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 600;
+    }
+
+
+    .nav-item.active {
+
+        color:
+            var(--gold-light);
+
+        background:
+            rgba(216,177,90,0.08);
+    }
+
+
+    .nav-icon {
+
+        font-size: 19px;
+
+        line-height: 1;
+    }
+
+
+    .ik-nav-icon {
+
+        width: 34px;
+        height: 34px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-weight: 800;
+    }
+
+
+    /* =================================================
+       RESPONSIVE
+       ================================================= */
+
+    @media (max-width: 520px) {
+
+        .topbar {
+            padding: 0 12px;
+        }
+
+        .container {
+            width:
+                calc(100% - 18px);
+        }
+
+        .bottom-nav {
+            width:
+                calc(100% - 14px);
+        }
+
+    }
+
+</style>
+
+</head><body><!-- =================================================
+     TOP BAR
+     ================================================= -->
+
+<header class="topbar">
+
+    <a
+        href="index.html"
+        class="back-btn"
+        aria-label="Back"
+    >
+        ←
+    </a>
+
+
+    <div class="title">
+
+        <h1>Messages</h1>
+
+        <p>Private conversations</p>
+
+    </div>
+
+
+    <button
+        class="compose-btn"
+        id="composeBtn"
+        aria-label="New message"
+    >
+        +
+    </button>
+
+</header>
+
+
+
+<!-- =================================================
+     MAIN
+     ================================================= -->
+
+<main class="container">
+
+
+    <!-- Search -->
+
+    <div class="search">
+
+        <span class="search-icon">
+            ⌕
+        </span>
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search conversations..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+
+    <!-- Conversations -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                Conversations
+            </h2>
+
+            <span id="conversationCount">
+                4 chats
+            </span>
+
+        </div>
+
+
+        <div
+            class="message-list"
+            id="messageList"
+        >
+
+
+            <!-- Alex -->
+
+            <article
+                class="message unread"
+                data-name="Alex Morgan"
+                data-username="@alexm"
+                data-letter="A"
+            >
+
+                <div class="avatar">
+
+                    A
+
+                    <span class="online"></span>
+
+                </div>
+
+
+                <div class="message-info">
+
+                    <div class="message-top">
+
+                        <span class="message-name">
+                            Alex Morgan
+                        </span>
+
+                        <span class="message-time">
+                            5m
+                        </span>
+
+                    </div>
+
+
+                    <div class="message-preview">
+
+                        <span class="unread-dot"></span>
+
+                        Hey! Are you joining the
+                        BuzzNet event tonight?
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Jordan -->
+
+            <article
+                class="message unread"
+                data-name="Jordan Lee"
+                data-username="@jordanl"
+                data-letter="J"
+            >
+
+                <div class="avatar">
+
+                    J
+
+                    <span class="online"></span>
+
+                </div>
+
+
+                <div class="message-info">
+
+                    <div class="message-top">
+
+                        <span class="message-name">
+                            Jordan Lee
+                        </span>
+
+                        <span class="message-time">
+                            28m
+                        </span>
+
+                    </div>
+
+
+                    <div class="message-preview">
+
+                        <span class="unread-dot"></span>
+
+                        That idea is amazing 🔥
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Sarah -->
+
+            <article
+                class="message"
+                data-name="Sarah Kim"
+                data-username="@sarahk"
+                data-letter="S"
+            >
+
+                <div class="avatar">
+
+                    S
+
+                </div>
+
+
+                <div class="message-info">
+
+                    <div class="message-top">
+
+                        <span class="message-name">
+                            Sarah Kim
+                        </span>
+
+                        <span class="message-time">
+                            2h
+                        </span>
+
+                    </div>
+
+
+                    <div class="message-preview">
+
+                        See you tomorrow! ✨
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- David -->
+
+            <article
+                class="message"
+                data-name="David Cole"
+                data-username="@davidc"
+                data-letter="D"
+            >
+
+                <div class="avatar">
+
+                    D
+
+                </div>
+
+
+                <div class="message-info">
+
+                    <div class="message-top">
+
+                        <span class="message-name">
+                            David Cole
+                        

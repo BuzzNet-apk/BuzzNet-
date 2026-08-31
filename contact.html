@@ -1,0 +1,1266 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Contact · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+
+        --text: #f8f6ff;
+        --muted: #aaa4b7;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+
+        --border: rgba(255,255,255,0.08);
+
+        --success: #6ee7a0;
+        --danger: #ff667a;
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 90% 0%,
+                rgba(141,92,255,0.15),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 5% 90%,
+                rgba(216,177,90,0.08),
+                transparent 28%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family:
+            "Inter",
+            sans-serif;
+
+        line-height: 1.6;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+
+    button {
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    /* =========================================
+       HEADER
+       ========================================= */
+
+    header {
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 50;
+
+        border-bottom:
+            1px solid var(--border);
+
+        background:
+            rgba(8,7,13,0.88);
+
+        backdrop-filter:
+            blur(18px);
+    }
+
+
+    .nav {
+
+        width:
+            min(1050px, 92%);
+
+        min-height: 70px;
+
+        margin: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+
+    .brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        font-size: 17px;
+
+        font-weight: 800;
+    }
+
+
+    .brand-icon {
+
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+
+        place-items: center;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-weight: 800;
+    }
+
+
+    .brand span {
+        color: var(--gold-light);
+    }
+
+
+    .back {
+
+        padding:
+            9px 14px;
+
+        border-radius: 10px;
+
+        border:
+            1px solid var(--border);
+
+        background:
+            var(--surface);
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    .back:hover {
+        color: var(--text);
+    }
+
+
+    /* =========================================
+       MAIN
+       ========================================= */
+
+    main {
+
+        width:
+            min(1050px, 92%);
+
+        margin:
+            55px auto 70px;
+    }
+
+
+    .hero {
+
+        text-align: center;
+
+        margin-bottom: 35px;
+    }
+
+
+    .eyebrow {
+
+        display: inline-block;
+
+        margin-bottom: 10px;
+
+        color: var(--gold-light);
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        letter-spacing:
+            0.14em;
+    }
+
+
+    h1 {
+
+        font-size:
+            clamp(30px, 7vw, 50px);
+
+        line-height: 1.1;
+
+        letter-spacing:
+            -0.05em;
+    }
+
+
+    .hero p {
+
+        width:
+            min(620px, 100%);
+
+        margin:
+            14px auto 0;
+
+        color: var(--muted);
+
+        font-size: 11px;
+    }
+
+
+    /* =========================================
+       LAYOUT
+       ========================================= */
+
+    .contact-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            0.85fr 1.15fr;
+
+        gap: 18px;
+
+        align-items: start;
+    }
+
+
+    .card {
+
+        padding: 27px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(23,21,33,0.96),
+                rgba(13,12,19,0.96)
+            );
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 20px 60px rgba(0,0,0,0.22);
+    }
+
+
+    /* =========================================
+       CONTACT INFORMATION
+       ========================================= */
+
+    .card-title {
+
+        font-size: 16px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .card-subtitle {
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        line-height: 1.6;
+
+        margin-bottom: 20px;
+    }
+
+
+    .contact-item {
+
+        display: flex;
+
+        gap: 12px;
+
+        padding:
+            13px 0;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .contact-item:last-child {
+        border-bottom: 0;
+    }
+
+
+    .contact-icon {
+
+        width: 37px;
+        height: 37px;
+
+        flex:
+            0 0 37px;
+
+        display: grid;
+
+        place-items: center;
+
+        border-radius: 11px;
+
+        background:
+            rgba(141,92,255,0.10);
+
+        border:
+            1px solid
+            rgba(141,92,255,0.12);
+
+        color:
+            var(--gold-light);
+
+        font-size: 13px;
+    }
+
+
+    .contact-item h3 {
+
+        font-size: 9px;
+
+        margin-bottom: 3px;
+    }
+
+
+    .contact-item p {
+
+        color: var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    .contact-item a {
+
+        color:
+            var(--gold-light);
+    }
+
+
+    /* =========================================
+       FORM
+       ========================================= */
+
+    .form-group {
+
+        margin-top: 15px;
+    }
+
+
+    .form-group:first-of-type {
+        margin-top: 0;
+    }
+
+
+    label {
+
+        display: block;
+
+        margin-bottom: 7px;
+
+        color: #d8d3e2;
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    input,
+    textarea,
+    select {
+
+        width: 100%;
+
+        border-radius: 12px;
+
+        border:
+            1px solid var(--border);
+
+        background:
+            var(--surface-2);
+
+        color: var(--text);
+
+        outline: none;
+
+        font-size: 9px;
+
+        transition: 0.2s ease;
+    }
+
+
+    input,
+    select {
+
+        height: 45px;
+
+        padding:
+            0 12px;
+    }
+
+
+    textarea {
+
+        min-height: 120px;
+
+        resize: vertical;
+
+        padding: 12px;
+    }
+
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+
+        border-color:
+            rgba(141,92,255,0.55);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(141,92,255,0.08);
+    }
+
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #716b7c;
+    }
+
+
+    select option {
+        background: #111019;
+    }
+
+
+    .submit-btn {
+
+        width: 100%;
+
+        height: 47px;
+
+        margin-top: 18px;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        transition: 0.2s ease;
+    }
+
+
+    .submit-btn:hover {
+        transform: translateY(-1px);
+    }
+
+
+    .submit-btn:disabled {
+
+        opacity: 0.5;
+
+        cursor: not-allowed;
+
+        transform: none;
+    }
+
+
+    .form-message {
+
+        display: none;
+
+        margin-top: 12px;
+
+        padding: 10px;
+
+        border-radius: 10px;
+
+        font-size: 8px;
+
+        line-height: 1.5;
+    }
+
+
+    .form-message.success {
+
+        display: block;
+
+        color: var(--success);
+
+        background:
+            rgba(110,231,160,0.07);
+
+        border:
+            1px solid
+            rgba(110,231,160,0.14);
+    }
+
+
+    .form-message.error {
+
+        display: block;
+
+        color: var(--danger);
+
+        background:
+            rgba(255,102,122,0.07);
+
+        border:
+            1px solid
+            rgba(255,102,122,0.14);
+    }
+
+
+    /* =========================================
+       FAQ
+       ========================================= */
+
+    .faq-section {
+
+        margin-top: 18px;
+
+        padding: 25px;
+
+        border-radius: 20px;
+
+        background:
+            rgba(17,16,25,0.86);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .faq-section h2 {
+
+        margin-bottom: 16px;
+
+        font-size: 16px;
+
+        color: var(--gold-light);
+    }
+
+
+    details {
+
+        padding:
+            13px 0;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    details:last-child {
+        border-bottom: 0;
+    }
+
+
+    summary {
+
+        cursor: pointer;
+
+        color: var(--text);
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    details p {
+
+        padding-top: 8px;
+
+        color: var(--muted);
+
+        font-size: 8px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+
+    footer {
+
+        width:
+            min(1050px, 92%);
+
+        margin:
+            0 auto 35px;
+
+        padding-top: 20px;
+
+        border-top:
+            1px solid var(--border);
+
+        text-align: center;
+
+        color: #666171;
+
+        font-size: 8px;
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+
+    @media (max-width: 720px) {
+
+        main {
+            margin-top: 35px;
+        }
+
+
+        .contact-grid {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .card {
+            padding: 22px;
+        }
+
+
+        .faq-section {
+            padding: 22px;
+        }
+
+    }
+
+
+    @media (max-width: 420px) {
+
+        .nav {
+            min-height: 62px;
+        }
+
+
+        .brand {
+            font-size: 14px;
+        }
+
+
+        .brand-icon {
+            width: 34px;
+            height: 34px;
+        }
+
+
+        .back {
+            padding:
+                8px 10px;
+
+            font-size: 8px;
+        }
+
+    }
+
+</style>
+
+</head><body><header><nav class="nav">
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <div class="brand-icon">
+            B
+        </div>
+
+        Buzz<span>Net</span>
+
+    </a>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← Back to BuzzNet
+    </a>
+
+</nav>
+
+</header><main><!-- HERO -->
+
+<section class="hero">
+
+    <div class="eyebrow">
+        BUZZNET · SUPPORT
+    </div>
+
+    <h1>
+        How can we help?
+    </h1>
+
+    <p>
+        Have a question, feedback, or a problem with
+        BuzzNet? Send us a message and we'll have a
+        clear place for your request in the platform.
+    </p>
+
+</section>
+
+
+
+<!-- CONTACT GRID -->
+
+<section class="contact-grid">
+
+
+    <!-- CONTACT DETAILS -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            Contact BuzzNet
+        </h2>
+
+        <p class="card-subtitle">
+            Choose the most appropriate way to reach
+            the BuzzNet team.
+        </p>
+
+
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                ✉
+            </div>
+
+            <div>
+
+                <h3>
+                    Email
+                </h3>
+
+                <p>
+                    Use the official BuzzNet support
+                    email when one is configured.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                ?
+            </div>
+
+            <div>
+
+                <h3>
+                    General Support
+                </h3>
+
+                <p>
+                    Questions about accounts,
+                    features, or the platform.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                !
+            </div>
+
+            <div>
+
+                <h3>
+                    Report a Problem
+                </h3>
+
+                <p>
+                    Tell us about bugs, abuse,
+                    suspicious activity, or other issues.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                AI
+            </div>
+
+            <div>
+
+                <h3>
+                    ik AI
+                </h3>
+
+                <p>
+                    Questions or feedback about the
+                    BuzzNet AI assistant.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CONTACT FORM -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            Send a message
+        </h2>
+
+        <p class="card-subtitle">
+            Complete the form below. The form currently
+            validates your message locally; a real
+            submission system will be connected later.
+        </p>
+
+
+        <form
+            id="contactForm"
+            novalidate
+        >
+
+
+            <div class="form-group">
+
+                <label for="name">
+                    NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your name"
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    EMAIL
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="topic">
+                    TOPIC
+                </label>
+
+                <select id="topic">
+
+                    <option value="">
+                        Select a topic
+                    </option>
+
+                    <option value="account">
+                        Account
+                    </option>
+
+                    <option value="bug">
+                        Report a bug
+                    </option>
+
+                    <option value="safety">
+                        Safety / abuse
+                    </option>
+
+                    <option value="ik">
+                        ik AI
+                    </option>
+
+                    <option value="feedback">
+                        Feedback
+                    </option>
+
+                    <option value="other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="message">
+                    MESSAGE
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="Tell us how we can help..."
+                ></textarea>
+
+            </div>
+
+
+
+            <div
+                class="form-message"
+                id="formMessage"
+            ></div>
+
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+            >
+                SEND MESSAGE
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- FAQ -->
+
+<section class="faq-section">
+
+    <h2>
+        Frequently Asked Questions
+    </h2>
+
+
+    <details>
+
+        <summary>
+            How do I create a BuzzNet account?
+        </summary>
+
+        <p>
+            Open the BuzzNet signup page, enter your
+            account information, accept the applicable
+            terms, and continue through the registration
+            process.
+        </p>
+
+    </details>
+
+
+
+    <details>
+
+        <summary>
+            I forgot my password. What should I do?
+        </summary>
+
+        <p>
+            Use the Forgot Password option on the login
+            page. A real password-recovery system will
+            be connected when BuzzNet's backend is added.
+        </p>
+
+    </details>
+
+
+
+    <details>
+
+        <summary>
+            How can I report inappropriate content?
+        </summary>
+
+        <p>
+            Use the appropriate reporting feature when
+            available, or contact BuzzNet support with
+            enough information for the issue to be
+            investigated.
+        </p>
+
+    </details>
+
+
+
+    <details>
+
+        <summary>
+            What is ik?
+        </summary>
+
+        <p>
+            ik is BuzzNet's planned AI assistant. It is
+            being designed as an integrated AI experience
+            inside BuzzNet.
+        </p>
+
+    </details>
+
+
+</section>
+
+</main><footer>© 2026 BuzzNet · Connect · Discover · Create
+
+</footer><script>
+
+    const contactForm =
+        document.getElementById(
+            "contactForm"
+        );
+
+    const formMessage =
+        document.getElementById(
+            "formMessage"
+        );
+
+    const submitBtn =
+        document.getElementById(
+            "submitBtn"
+        );
+
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        formMessage.textContent =
+            text;
+
+        formMessage.className =
+            "form-message " + type;
+
+    }
+
+
+    contactForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const topic =
+                document
+                    .getElementById("topic")
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById("message")
+                    .value
+                    .trim();
+
+
+            if (!name) {
+
+                showMessage(
+                    "Please enter your name.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    .test(email)
+            ) {
+
+                showMessage(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!topic) {
+
+                showMessage(
+                    "Please select a topic.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                message.length < 10
+            ) {
+
+                showMessage(
+                    "Please enter a message of at least 10 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            submitBtn.disabled =
+                true;
+
+            submitBtn.textContent =
+                "PROCESSING...";
+
+
+            setTimeout(
+                () => {
+
+                    showMessage(
+                        "Your message has been validated. Real message delivery will be connected when BuzzNet's backend is added.",
+                        "success"
+                    );
+
+
+                    contactForm.reset();
+
+
+                    submitBtn.disabled =
+                        false;
+
+                    submitBtn.textContent =
+                        "SEND MESSAGE";
+
+                },
+                900
+            );
+
+        }
+    );
+
+</script></body>
+</html>

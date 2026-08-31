@@ -1,0 +1,1225 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Settings · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+        --surface-3: #211d2c;
+
+        --text: #f8f6ff;
+        --muted: #9993a8;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+
+        --border: rgba(255,255,255,0.08);
+
+        --danger: #ff667a;
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        min-height: 100vh;
+        padding-bottom: 95px;
+
+        background:
+            radial-gradient(
+                circle at 85% 0%,
+                rgba(141,92,255,0.13),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 10% 30%,
+                rgba(216,177,90,0.07),
+                transparent 25%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    button {
+        font: inherit;
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* =================================================
+       TOP BAR
+       ================================================= */
+
+    .topbar {
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 20px;
+
+        background:
+            rgba(8,7,13,0.88);
+
+        border-bottom:
+            1px solid var(--border);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .back-btn {
+
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--text);
+
+        font-size: 21px;
+    }
+
+
+    .page-title {
+
+        font-size: 18px;
+
+        font-weight: 800;
+    }
+
+
+    .save-btn {
+
+        padding: 9px 12px;
+
+        border-radius: 11px;
+
+        background:
+            rgba(216,177,90,0.1);
+
+        border:
+            1px solid rgba(216,177,90,0.25);
+
+        color:
+            var(--gold-light);
+
+        font-size: 10px;
+
+        font-weight: 700;
+    }
+
+
+    /* =================================================
+       MAIN
+       ================================================= */
+
+    .container {
+
+        width:
+            min(760px, calc(100% - 24px));
+
+        margin: auto;
+
+        padding-top: 22px;
+    }
+
+
+    /* =================================================
+       ACCOUNT HEADER
+       ================================================= */
+
+    .account-card {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 13px;
+
+        padding: 17px;
+
+        border-radius: 19px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(23,21,33,0.98),
+                rgba(17,16,25,0.98)
+            );
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .avatar {
+
+        width: 55px;
+        height: 55px;
+
+        display: grid;
+        place-items: center;
+
+        flex: 0 0 55px;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-size: 18px;
+
+        font-weight: 800;
+    }
+
+
+    .account-info {
+
+        min-width: 0;
+        flex: 1;
+    }
+
+
+    .account-info h2 {
+
+        font-size: 15px;
+    }
+
+
+    .account-info p {
+
+        margin-top: 4px;
+
+        color:
+            var(--muted);
+
+        font-size: 10px;
+    }
+
+
+    .view-profile {
+
+        padding: 8px 10px;
+
+        border-radius: 10px;
+
+        background:
+            var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        color:
+            var(--gold-light);
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    /* =================================================
+       SETTINGS SECTION
+       ================================================= */
+
+    .section {
+
+        margin-top: 25px;
+    }
+
+
+    .section-title {
+
+        margin:
+            0 5px 9px;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            0.08em;
+    }
+
+
+    .settings-card {
+
+        overflow: hidden;
+
+        border-radius: 17px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    /* =================================================
+       SETTING ITEM
+       ================================================= */
+
+    .setting {
+
+        min-height: 62px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 13px;
+
+        padding: 12px 15px;
+
+        border-bottom:
+            1px solid var(--border);
+
+        transition:
+            background 0.2s ease;
+    }
+
+
+    .setting:last-child {
+        border-bottom: 0;
+    }
+
+
+    .setting.clickable {
+        cursor: pointer;
+    }
+
+
+    .setting.clickable:hover {
+
+        background:
+            rgba(255,255,255,0.025);
+    }
+
+
+    .setting-icon {
+
+        width: 37px;
+        height: 37px;
+
+        display: grid;
+        place-items: center;
+
+        flex: 0 0 37px;
+
+        border-radius: 11px;
+
+        background:
+            var(--surface-2);
+
+        color:
+            var(--gold-light);
+
+        font-size: 16px;
+    }
+
+
+    .setting-info {
+
+        flex: 1;
+
+        min-width: 0;
+    }
+
+
+    .setting-info strong {
+
+        display: block;
+
+        font-size: 11px;
+    }
+
+
+    .setting-info span {
+
+        display: block;
+
+        margin-top: 3px;
+
+        color:
+            var(--muted);
+
+        font-size: 8px;
+
+        line-height: 1.4;
+    }
+
+
+    .arrow {
+
+        color:
+            var(--muted);
+
+        font-size: 18px;
+    }
+
+
+    /* =================================================
+       TOGGLE
+       ================================================= */
+
+    .switch {
+
+        position: relative;
+
+        width: 42px;
+        height: 23px;
+
+        flex: 0 0 42px;
+
+        border-radius: 20px;
+
+        background:
+            var(--surface-3);
+
+        border:
+            1px solid var(--border);
+
+        transition:
+            0.2s ease;
+    }
+
+
+    .switch::after {
+
+        content: "";
+
+        position: absolute;
+
+        top: 3px;
+        left: 3px;
+
+        width: 15px;
+        height: 15px;
+
+        border-radius: 50%;
+
+        background:
+            var(--muted);
+
+        transition:
+            0.2s ease;
+    }
+
+
+    .switch.active {
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        border-color:
+            transparent;
+    }
+
+
+    .switch.active::after {
+
+        left: 22px;
+
+        background:
+            #09080d;
+    }
+
+
+    /* =================================================
+       SELECT
+       ================================================= */
+
+    .value {
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 600;
+    }
+
+
+    /* =================================================
+       DANGER
+       ================================================= */
+
+    .danger .setting-icon {
+
+        color:
+            var(--danger);
+    }
+
+
+    .danger .setting-info strong {
+
+        color:
+            var(--danger);
+    }
+
+
+    /* =================================================
+       ABOUT
+       ================================================= */
+
+    .about {
+
+        margin-top: 22px;
+
+        padding: 18px;
+
+        text-align: center;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .about-logo {
+
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-weight: 800;
+
+        font-size: 14px;
+    }
+
+
+    .about strong {
+
+        display: block;
+
+        margin-top: 9px;
+
+        color:
+            var(--text);
+
+        font-size: 11px;
+    }
+
+
+    .about span {
+
+        display: block;
+
+        margin-top: 4px;
+    }
+
+
+    /* =================================================
+       BOTTOM NAV
+       ================================================= */
+
+    .bottom-nav {
+
+        position: fixed;
+
+        left: 50%;
+        bottom: 10px;
+
+        z-index: 200;
+
+        width:
+            min(650px, calc(100% - 22px));
+
+        height: 65px;
+
+        transform:
+            translateX(-50%);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content:
+            space-around;
+
+        padding: 5px;
+
+        background:
+            rgba(17,16,25,0.95);
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 21px;
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,0.55);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .nav-item {
+
+        min-width: 55px;
+        height: 53px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 2px;
+
+        border-radius: 15px;
+
+        color:
+            var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 600;
+    }
+
+
+    .nav-item.active {
+
+        color:
+            var(--gold-light);
+
+        background:
+            rgba(216,177,90,0.08);
+    }
+
+
+    .nav-icon {
+
+        font-size: 19px;
+
+        line-height: 1;
+    }
+
+
+    .ik-nav-icon {
+
+        width: 34px;
+        height: 34px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color:
+            #09080d;
+
+        font-weight: 800;
+    }
+
+
+    /* =================================================
+       MODAL
+       ================================================= */
+
+    .modal {
+
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 500;
+
+        display: none;
+
+        align-items: flex-end;
+        justify-content: center;
+
+        padding: 15px;
+
+        background:
+            rgba(0,0,0,0.65);
+
+        backdrop-filter:
+            blur(8px);
+    }
+
+
+    .modal.show {
+        display: flex;
+    }
+
+
+    .modal-card {
+
+        width:
+            min(500px, 100%);
+
+        padding: 20px;
+
+        border-radius:
+            22px 22px 16px 16px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 -10px 50px rgba(0,0,0,0.45);
+    }
+
+
+    .modal-card h2 {
+
+        font-size: 17px;
+    }
+
+
+    .modal-card p {
+
+        margin-top: 7px;
+
+        color:
+            var(--muted);
+
+        font-size: 10px;
+
+        line-height: 1.6;
+    }
+
+
+    .modal-close {
+
+        width: 100%;
+
+        margin-top: 17px;
+
+        padding: 11px;
+
+        border-radius: 12px;
+
+        background:
+            var(--surface-2);
+
+        color:
+            var(--text);
+
+        font-size: 10px;
+
+        font-weight: 700;
+    }
+
+
+    /* =================================================
+       RESPONSIVE
+       ================================================= */
+
+    @media (max-width: 520px) {
+
+        .topbar {
+            padding: 0 12px;
+        }
+
+        .container {
+            width:
+                calc(100% - 18px);
+        }
+
+        .setting {
+            padding:
+                11px 12px;
+        }
+
+        .bottom-nav {
+            width:
+                calc(100% - 14px);
+        }
+
+    }
+
+</style>
+
+</head><body><!-- =================================================
+     TOP BAR
+     ================================================= -->
+
+<header class="topbar">
+
+    <a
+        href="profile.html"
+        class="back-btn"
+        aria-label="Back"
+    >
+        ←
+    </a>
+
+
+    <div class="page-title">
+        Settings
+    </div>
+
+
+    <button
+        class="save-btn"
+        id="saveBtn"
+    >
+        Save
+    </button>
+
+</header>
+
+
+
+<!-- =================================================
+     MAIN
+     ================================================= -->
+
+<main class="container">
+
+
+    <!-- Account -->
+
+    <section class="account-card">
+
+        <div class="avatar">
+            Y
+        </div>
+
+
+        <div class="account-info">
+
+            <h2>
+                Your Name
+            </h2>
+
+            <p>
+                @yourusername
+            </p>
+
+        </div>
+
+
+        <a
+            href="profile.html"
+            class="view-profile"
+        >
+            View profile
+        </a>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ACCOUNT
+         ================================================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Account
+        </div>
+
+
+        <div class="settings-card">
+
+
+            <div
+                class="setting clickable"
+                data-message="Your profile information can be edited here."
+            >
+
+                <div class="setting-icon">
+                    👤
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Edit account
+                    </strong>
+
+                    <span>
+                        Change your name, username and bio
+                    </span>
+
+                </div>
+
+
+                <span class="arrow">
+                    ›
+                </span>
+
+            </div>
+
+
+
+            <div
+                class="setting clickable"
+                data-message="Your email and password will be managed by the BuzzNet account system."
+            >
+
+                <div class="setting-icon">
+                    🔐
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Login & security
+                    </strong>
+
+                    <span>
+                        Password, email and account security
+                    </span>
+
+                </div>
+
+
+                <span class="arrow">
+                    ›
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PREFERENCES
+         ================================================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Preferences
+        </div>
+
+
+        <div class="settings-card">
+
+
+            <!-- Dark mode -->
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    ◐
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Dark appearance
+                    </strong>
+
+                    <span>
+                        Keep BuzzNet in its luxurious dark theme
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="switch active"
+                    data-setting="dark"
+                    aria-label="Toggle dark appearance"
+                ></button>
+
+            </div>
+
+
+
+            <!-- Notifications -->
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    ♡
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Notifications
+                    </strong>
+
+                    <span>
+                        Likes, comments, follows and mentions
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="switch active"
+                    data-setting="notifications"
+                    aria-label="Toggle notifications"
+                ></button>
+
+            </div>
+
+
+
+            <!-- Autoplay -->
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    ▶
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Autoplay media
+                    </strong>
+
+                    <span>
+                        Automatically play videos and media
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="switch"
+                    data-setting="autoplay"
+                    aria-label="Toggle autoplay"
+                ></button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PRIVACY
+         ================================================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+            Privacy
+        </div>
+
+
+        <div class="settings-card">
+
+
+            <div
+                class="setting clickable"
+                data-message="Privacy controls will be connected when the BuzzNet account system is active."
+            >
+
+                <div class="setting-icon">
+                    🛡
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Privacy controls
+                    </strong>
+
+                    <span>
+                        Control who can interact with you
+                    </span>
+
+                </div>
+
+
+                <span class="arrow">
+                    ›
+                </span>
+
+            </div>
+
+
+
+            <div
+                class="setting clickable"
+                data-message="Blocked accounts will appear here."
+            >
+
+                <div class="setting-icon">
+                    🚫
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        Blocked accounts
+                    </strong>
+
+                    <span>
+                        Manage accounts you've blocked
+                    </span>
+
+                </div>
+
+
+                <span class="arrow">
+                    ›
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ABOUT
+         ================================================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+            About BuzzNet
+        </div>
+
+
+        <div class="settings-card">
+
+
+            <div
+                class="setting clickable"
+                data-message="BuzzNet is your social space for connecting, discovering and sharing."
+            >
+
+                <div class="setting-icon">
+                    ✦
+                </div>
+
+
+                <div class="setting-info">
+
+                    <strong>
+                        About BuzzNet
+                    </strong>
+
+                    <span>
+                        Learn more about BuzzNet
+                    </span>
+
+                </div>
+
+
+                <span class="arrow">
+                    ›
+                </span>
+
+            </div>
+
+
+
+ 

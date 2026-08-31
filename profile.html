@@ -1,0 +1,1421 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Profile · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+        --surface-3: #211d2c;
+
+        --text: #f8f6ff;
+        --muted: #9993a8;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+
+        --border: rgba(255,255,255,0.08);
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        min-height: 100vh;
+        padding-bottom: 95px;
+
+        background:
+            radial-gradient(
+                circle at 80% 0%,
+                rgba(141,92,255,0.14),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 15% 25%,
+                rgba(216,177,90,0.07),
+                transparent 25%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    button {
+        font: inherit;
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    /* =================================================
+       TOP BAR
+       ================================================= */
+
+    .topbar {
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 20px;
+
+        background:
+            rgba(8,7,13,0.88);
+
+        border-bottom:
+            1px solid var(--border);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .back-btn {
+
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background: var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--text);
+
+        font-size: 21px;
+    }
+
+
+    .page-title {
+
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+
+    .settings-btn {
+
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background: var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--gold-light);
+
+        font-size: 18px;
+    }
+
+
+    /* =================================================
+       PROFILE
+       ================================================= */
+
+    .container {
+
+        width:
+            min(760px, calc(100% - 24px));
+
+        margin: auto;
+
+        padding-top: 22px;
+    }
+
+
+    .profile-card {
+
+        position: relative;
+
+        overflow: hidden;
+
+        padding: 25px 20px 20px;
+
+        border-radius: 23px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(23,21,33,0.98),
+                rgba(17,16,25,0.98)
+            );
+
+        border:
+            1px solid var(--border);
+
+        text-align: center;
+    }
+
+
+    .profile-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: -100px;
+        left: 50%;
+
+        width: 250px;
+        height: 180px;
+
+        transform:
+            translateX(-50%);
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(141,92,255,0.2),
+                transparent 70%
+            );
+
+        pointer-events: none;
+    }
+
+
+    /* =================================================
+       AVATAR
+       ================================================= */
+
+    .profile-avatar {
+
+        position: relative;
+        z-index: 1;
+
+        width: 92px;
+        height: 92px;
+
+        display: grid;
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-size: 30px;
+        font-weight: 800;
+
+        border:
+            4px solid var(--surface);
+
+        box-shadow:
+            0 10px 35px rgba(141,92,255,0.22);
+    }
+
+
+    .online {
+
+        position: absolute;
+
+        right: 2px;
+        bottom: 5px;
+
+        width: 18px;
+        height: 18px;
+
+        border-radius: 50%;
+
+        background: #6ee7a0;
+
+        border:
+            3px solid var(--surface);
+    }
+
+
+    .profile-name {
+
+        margin-top: 14px;
+
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+
+    .verified {
+
+        display: inline-grid;
+
+        place-items: center;
+
+        width: 17px;
+        height: 17px;
+
+        margin-left: 4px;
+
+        border-radius: 50%;
+
+        background:
+            var(--purple);
+
+        color: white;
+
+        font-size: 9px;
+    }
+
+
+    .username {
+
+        margin-top: 4px;
+
+        color: var(--muted);
+
+        font-size: 11px;
+    }
+
+
+    .bio {
+
+        max-width: 460px;
+
+        margin: 12px auto 0;
+
+        color: #d7d2e1;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =================================================
+       STATS
+       ================================================= */
+
+    .stats {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 8px;
+
+        max-width: 430px;
+
+        margin: 20px auto 0;
+    }
+
+
+    .stat {
+
+        padding: 12px 5px;
+
+        border-radius: 13px;
+
+        background:
+            rgba(255,255,255,0.025);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .stat strong {
+
+        display: block;
+
+        font-size: 16px;
+    }
+
+
+    .stat span {
+
+        display: block;
+
+        margin-top: 3px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    /* =================================================
+       PROFILE ACTIONS
+       ================================================= */
+
+    .profile-actions {
+
+        display: flex;
+
+        gap: 8px;
+
+        max-width: 430px;
+
+        margin: 15px auto 0;
+    }
+
+
+    .profile-action {
+
+        flex: 1;
+
+        padding: 11px;
+
+        border-radius: 12px;
+
+        background:
+            rgba(216,177,90,0.1);
+
+        border:
+            1px solid rgba(216,177,90,0.25);
+
+        color:
+            var(--gold-light);
+
+        font-size: 10px;
+
+        font-weight: 700;
+    }
+
+
+    .profile-action.secondary {
+
+        background:
+            var(--surface-2);
+
+        border-color:
+            var(--border);
+
+        color:
+            var(--text);
+    }
+
+
+    /* =================================================
+       TABS
+       ================================================= */
+
+    .tabs {
+
+        display: flex;
+
+        margin-top: 25px;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .tab {
+
+        position: relative;
+
+        flex: 1;
+
+        padding: 13px 5px;
+
+        background: transparent;
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        font-weight: 700;
+    }
+
+
+    .tab.active {
+
+        color:
+            var(--gold-light);
+    }
+
+
+    .tab.active::after {
+
+        content: "";
+
+        position: absolute;
+
+        left: 25%;
+        right: 25%;
+        bottom: -1px;
+
+        height: 2px;
+
+        border-radius: 5px;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--gold),
+                var(--purple)
+            );
+    }
+
+
+    /* =================================================
+       POSTS
+       ================================================= */
+
+    .posts {
+
+        margin-top: 14px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .post {
+
+        padding: 16px;
+
+        border-radius: 17px;
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    .post-header {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+    }
+
+
+    .post-avatar {
+
+        width: 36px;
+        height: 36px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--purple),
+                var(--gold)
+            );
+
+        color: #09080d;
+
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+
+    .post-author {
+
+        font-size: 11px;
+
+        font-weight: 700;
+    }
+
+
+    .post-date {
+
+        margin-top: 2px;
+
+        color: var(--muted);
+
+        font-size: 8px;
+    }
+
+
+    .post-text {
+
+        margin-top: 12px;
+
+        color: #ddd9e7;
+
+        font-size: 12px;
+
+        line-height: 1.65;
+    }
+
+
+    .post-actions {
+
+        display: flex;
+
+        gap: 7px;
+
+        margin-top: 13px;
+    }
+
+
+    .post-action {
+
+        padding: 7px 10px;
+
+        border-radius: 9px;
+
+        background:
+            var(--surface-2);
+
+        color: var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    /* =================================================
+       EMPTY
+       ================================================= */
+
+    .empty {
+
+        display: none;
+
+        padding: 45px 20px;
+
+        text-align: center;
+    }
+
+
+    .empty-icon {
+
+        width: 58px;
+        height: 58px;
+
+        display: grid;
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 18px;
+
+        background:
+            rgba(141,92,255,0.1);
+
+        color:
+            var(--gold-light);
+
+        font-size: 24px;
+    }
+
+
+    .empty h2 {
+
+        margin-top: 15px;
+
+        font-size: 17px;
+    }
+
+
+    .empty p {
+
+        margin-top: 6px;
+
+        color: var(--muted);
+
+        font-size: 10px;
+    }
+
+
+    /* =================================================
+       BOTTOM NAV
+       ================================================= */
+
+    .bottom-nav {
+
+        position: fixed;
+
+        left: 50%;
+        bottom: 10px;
+
+        z-index: 200;
+
+        width:
+            min(650px, calc(100% - 22px));
+
+        height: 65px;
+
+        transform:
+            translateX(-50%);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content:
+            space-around;
+
+        padding: 5px;
+
+        background:
+            rgba(17,16,25,0.95);
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 21px;
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,0.55);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .nav-item {
+
+        min-width: 55px;
+        height: 53px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 2px;
+
+        border-radius: 15px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 600;
+    }
+
+
+    .nav-item.active {
+
+        color:
+            var(--gold-light);
+
+        background:
+            rgba(216,177,90,0.08);
+    }
+
+
+    .nav-icon {
+
+        font-size: 19px;
+
+        line-height: 1;
+    }
+
+
+    .ik-nav-icon {
+
+        width: 34px;
+        height: 34px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-weight: 800;
+    }
+
+
+    /* =================================================
+       RESPONSIVE
+       ================================================= */
+
+    @media (max-width: 520px) {
+
+        .topbar {
+            padding: 0 12px;
+        }
+
+        .container {
+            width:
+                calc(100% - 18px);
+        }
+
+        .profile-card {
+            padding:
+                22px 14px 17px;
+        }
+
+        .profile-avatar {
+            width: 82px;
+            height: 82px;
+        }
+
+        .profile-name {
+            font-size: 20px;
+        }
+
+        .bottom-nav {
+            width:
+                calc(100% - 14px);
+        }
+    }
+
+</style>
+
+</head><body><!-- =================================================
+     TOP BAR
+     ================================================= -->
+
+<header class="topbar">
+
+    <a
+        href="index.html"
+        class="back-btn"
+        aria-label="Back"
+    >
+        ←
+    </a>
+
+
+    <div class="page-title">
+        Profile
+    </div>
+
+
+    <a
+        href="settings.html"
+        class="settings-btn"
+        aria-label="Settings"
+    >
+        ⚙
+    </a>
+
+</header>
+
+
+
+<!-- =================================================
+     MAIN
+     ================================================= -->
+
+<main class="container">
+
+
+    <!-- PROFILE CARD -->
+
+    <section class="profile-card">
+
+
+        <div class="profile-avatar">
+
+            Y
+
+            <span class="online"></span>
+
+        </div>
+
+
+        <h1 class="profile-name">
+
+            Your Name
+
+            <span class="verified">
+                ✓
+            </span>
+
+        </h1>
+
+
+        <p class="username">
+            @yourusername
+        </p>
+
+
+        <p class="bio">
+
+            Welcome to my BuzzNet profile.
+            Building, learning and connecting
+            with amazing people. ✨
+
+        </p>
+
+
+        <!-- Stats -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong>
+                    24
+                </strong>
+
+                <span>
+                    Posts
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    1.2K
+                </strong>
+
+                <span>
+                    Followers
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    386
+                </strong>
+
+                <span>
+                    Following
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Actions -->
+
+        <div class="profile-actions">
+
+            <button
+                class="profile-action"
+                id="editProfile"
+            >
+                Edit profile
+            </button>
+
+
+            <button
+                class="profile-action secondary"
+                id="shareProfile"
+            >
+                Share profile
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TABS
+         ================================================= -->
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            data-tab="posts"
+        >
+            Posts
+        </button>
+
+
+        <button
+            class="tab"
+            data-tab="likes"
+        >
+            Likes
+        </button>
+
+
+        <button
+            class="tab"
+            data-tab="media"
+        >
+            Media
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         POSTS
+         ================================================= -->
+
+    <section
+        class="posts"
+        id="postsSection"
+    >
+
+
+        <article class="post">
+
+            <div class="post-header">
+
+                <div class="post-avatar">
+                    Y
+                </div>
+
+
+                <div>
+
+                    <div class="post-author">
+                        Your Name
+                    </div>
+
+                    <div class="post-date">
+                        Today · 10:30 AM
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p class="post-text">
+
+                Every great journey starts with
+                one decision to begin. Keep
+                building. 🚀
+
+            </p>
+
+
+            <div class="post-actions">
+
+                <button class="post-action">
+                    ♡ 128
+                </button>
+
+                <button class="post-action">
+                    💬 16
+                </button>
+
+                <button class="post-action">
+                    ↗ Share
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="post">
+
+            <div class="post-header">
+
+                <div class="post-avatar">
+                    Y
+                </div>
+
+
+                <div>
+
+                    <div class="post-author">
+                        Your Name
+                    </div>
+
+                    <div class="post-date">
+                        Yesterday · 7:45 PM
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p class="post-text">
+
+                Excited to be part of the
+                BuzzNet community. ✨
+
+            </p>
+
+
+            <div class="post-actions">
+
+                <button class="post-action">
+                    ♡ 94
+                </button>
+
+                <button class="post-action">
+                    💬 9
+                </button>
+
+                <button class="post-action">
+                    ↗ Share
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         EMPTY STATE
+         ================================================= -->
+
+    <section
+        class="empty"
+        id="emptyState"
+    >
+
+        <div class="empty-icon">
+            ✦
+        </div>
+
+        <h2>
+            Nothing here yet
+        </h2>
+
+        <p>
+            This section will show your activity.
+        </p>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =================================================
+     BOTTOM NAV
+     ================================================= -->
+
+<nav class="bottom-nav">
+
+    <a
+        href="index.html"
+        class="nav-item"
+    >
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <a
+        href="explore.html"
+        class="nav-item"
+    >
+
+        <span class="nav-icon">
+            ⌕
+        </span>
+
+        <span>
+            Explore
+        </span>
+
+    </a>
+
+
+    <a
+        href="ik.html"
+        class="nav-item"
+    >
+
+        <span class="ik-nav-icon">
+            ✦
+        </span>
+
+        <span>
+            ik
+        </span>
+
+    </a>
+
+
+    <a
+        href="notifications.html"
+        class="nav-item"
+    >
+
+        <span class="nav-icon">
+            ♡
+        </span>
+
+        <span>
+            Alerts
+        </span>
+
+    </a>
+
+
+    <a
+        href="profile.html"
+        class="nav-item active"
+    >
+
+        <span class="nav-icon">
+            ◯
+        </span>
+
+        <span>
+            Profile
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+     ================================================= -->
+
+<script>
+
+    const tabs = document.querySelectorAll(".tab");
+    const postsSection = document.getElementById("postsSection");
+    const emptyState = document.getElementById("emptyState");
+
+    /* PROFILE TABS */
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            tabs.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            tab.classList.add("active");
+
+            if (tab.dataset.tab === "posts") {
+
+                postsSection.style.display = "flex";
+                emptyState.style.display = "none";
+
+            } else {
+
+                postsSection.style.display = "none";
+                emptyState.style.display = "block";
+
+                if (tab.dataset.tab === "likes") {
+                    emptyState.querySelector("h2").textContent =
+                        "No liked posts yet";
+
+                    emptyState.querySelector("p").textContent =
+                        "Posts you like will appear here.";
+                }
+
+                if (tab.dataset.tab === "media") {
+                    emptyState.querySelector("h2").textContent =
+                        "No media yet";
+
+                    emptyState.querySelector("p").textContent =
+                        "Your photos and videos will appear here.";
+                }
+
+            }
+
+        });
+
+    });
+
+
+    /* EDIT PROFILE */
+
+    document.getElementById("editProfile")
+        .addEventListener("click", () => {
+
+            alert("Profile editing will be available soon.");
+
+        });
+
+
+    /* SHARE PROFILE */
+
+    document.getElementById("shareProfile")
+        .addEventListener("click", async () => {
+
+            const profileUrl = window.location.href;
+
+            if (navigator.share) {
+
+                try {
+
+                    await navigator.share({
+                        title: "BuzzNet Profile",
+                        text: "Check out my BuzzNet profile!",
+                        url: profileUrl
+                    });
+
+                } catch (error) {
+                    // Sharing cancelled
+                }
+
+            } else {
+
+                try {
+
+                    await navigator.clipboard.writeText(profileUrl);
+
+                    alert("Profile link copied!");
+
+                } catch (error) {
+
+                    alert("Profile link: " + profileUrl);
+
+                }
+
+            }
+
+        });
+
+
+    /* POST BUTTONS */
+
+    const postActions =
+        document.querySelectorAll(".post-action");
+
+    postActions.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const text = button.textContent.trim();
+
+            /* LIKE */
+
+            if (text.includes("♡") || text.includes("♥")) {
+
+                const number =
+                    parseInt(text.replace(/\D/g, "")) || 0;
+
+                if (text.includes("♡")) {
+
+                    button.textContent = "♥ " + (number + 1);
+
+                } else {
+
+                    button.textContent = "♡ " + Math.max(0, number - 1);
+
+                }
+
+            }
+
+            /* COMMENTS */
+
+            else if (text.includes("💬")) {
+
+                alert("Comments will be available soon.");
+
+            }
+
+            /* SHARE */
+
+            else if (text.includes("Share")) {
+
+                const url = window.location.href;
+
+                if (navigator.share) {
+
+                    navigator.share({
+                        title: "BuzzNet Post",
+                        text: "Check out this BuzzNet post!",
+                        url: url
+                    }).catch(() => {});
+
+                } else {
+
+                    navigator.clipboard.writeText(url)
+                        .then(() => {
+                            alert("Post link copied!");
+                        })
+                        .catch(() => {
+                            alert("Unable to copy link.");
+                        });
+
+                }
+
+            }
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

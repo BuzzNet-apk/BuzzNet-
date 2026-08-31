@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d">
+    <meta name="description" content="BuzzNet — Connect, share and discover.">
+    <title>BuzzNet</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head><body><!-- ================= HEADER ================= -->
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-mark">B</span>
+        <span class="brand-name">BuzzNet</span>
+    </div>
+
+    <div class="top-actions">
+        <button class="icon-btn" id="searchBtn" aria-label="Search">
+            🔍
+        </button>
+
+        <a href="ik.html" class="ik-btn">
+            <span>✦</span>
+            <span>ik</span>
+        </a>
+
+        <button class="profile-mini" id="profileBtn" aria-label="Profile">
+            <span>U</span>
+        </button>
+    </div>
+</header>
+
+
+<!-- ================= MAIN ================= -->
+<main class="main-content">
+
+    <!-- Welcome -->
+    <section class="welcome-section">
+        <p class="eyebrow">WELCOME TO BUZZNET</p>
+        <h1>What's happening?</h1>
+        <p class="welcome-text">
+            Connect, share and discover what's buzzing.
+        </p>
+    </section>
+
+
+    <!-- Create Post -->
+    <section class="create-card">
+        <div class="avatar">U</div>
+
+        <div class="create-content">
+            <button class="post-input" id="openComposer">
+                What's on your mind?
+            </button>
+
+            <div class="create-actions">
+                <button type="button" class="create-action">
+                    <span>📷</span>
+                    Photo
+                </button>
+
+                <button type="button" class="create-action">
+                    <span>🎥</span>
+                    Video
+                </button>
+
+                <button type="button" class="create-action">
+                    <span>😊</span>
+                    Feeling
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Feed -->
+    <section class="feed-section">
+
+        <div class="section-heading">
+            <h2>For You</h2>
+
+            <button class="sort-btn" id="sortBtn">
+                Latest ▾
+            </button>
+        </div>
+
+
+        <!-- Empty Feed -->
+        <div class="empty-feed" id="emptyFeed">
+            <div class="empty-icon">✦</div>
+            <h3>Your feed is ready</h3>
+            <p>
+                Posts from people you follow will appear here.
+                Start connecting to fill your BuzzNet.
+            </p>
+
+            <a href="explore.html" class="primary-btn">
+                Explore BuzzNet
+            </a>
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= BOTTOM NAVIGATION ================= -->
+<nav class="bottom-nav">
+
+    <a href="index.html" class="nav-item active">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="explore.html" class="nav-item">
+        <span class="nav-icon">⌕</span>
+        <span>Explore</span>
+    </a>
+
+    <a href="ik.html" class="nav-item ik-nav">
+        <span class="ik-nav-icon">✦</span>
+        <span>ik</span>
+    </a>
+
+    <a href="notifications.html" class="nav-item">
+        <span class="nav-icon">♡</span>
+        <span>Alerts</span>
+    </a>
+
+    <a href="profile.html" class="nav-item">
+        <span class="nav-icon">◯</span>
+        <span>Profile</span>
+    </a>
+
+</nav>
+
+
+<!-- ================= COMPOSER MODAL ================= -->
+<div class="modal" id="composerModal" aria-hidden="true">
+
+    <div class="modal-backdrop" id="closeComposer"></div>
+
+    <div class="composer-modal">
+
+        <div class="modal-header">
+            <h2>Create a post</h2>
+
+            <button class="close-btn" id="closeComposerBtn">
+                ×
+            </button>
+        </div>
+
+        <textarea
+            id="postText"
+            maxlength="500"
+            placeholder="What's on your mind?"
+        ></textarea>
+
+        <div class="composer-footer">
+            <span id="characterCount">0 / 500</span>
+
+            <button class="primary-btn" id="publishPost">
+                Post
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================= SCRIPTS ================= -->
+<!-- ================= SCRIPTS ================= -->
+
+<!-- Core storage and utilities -->
+<script src="storage.js"></script>
+<script src="utils.js"></script>
+
+<!-- Core systems -->
+<script src="auth.js"></script>
+<script src="router.js"></script>
+<script src="search.js"></script>
+<script src="notifications.js"></script>
+<script src="messages.js"></script>
+<script src="profile.js"></script>
+
+<!-- Social features -->
+<script src="posts.js"></script>
+<script src="feed.js"></script>
+<script src="settings.js"></script>
+<script src="explore.js"></script>
+<script src="upload.js"></script>
+
+<!-- ik AI system -->
+<script src="ik-core.js"></script>
+<script src="ik-engine.js"></script>
+
+<!-- App coordination -->
+<script src="modules.js"></script>
+<script src="app.js"></script>
+<script src="loader.js"></script>
+
+<!-- Existing homepage interaction -->
+<script src="script.js"></script>
+
+</body>
+</html>

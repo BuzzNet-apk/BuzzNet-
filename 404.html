@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#08070d"
+>
+
+<title>404 · BuzzNet</title>
+
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+    :root {
+
+        --bg: #08070d;
+
+        --surface: #111019;
+
+        --text: #f8f6ff;
+
+        --muted: #aaa4b7;
+
+        --gold: #d8b15a;
+
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+
+        --border:
+            rgba(255,255,255,0.08);
+
+    }
+
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: hidden;
+
+        padding: 25px;
+
+        background:
+
+            radial-gradient(
+                circle at 50% 20%,
+                rgba(141,92,255,0.16),
+                transparent 30%
+            ),
+
+            radial-gradient(
+                circle at 15% 90%,
+                rgba(216,177,90,0.09),
+                transparent 30%
+            ),
+
+            var(--bg);
+
+        color: var(--text);
+
+        font-family:
+            "Inter",
+            sans-serif;
+
+    }
+
+
+    .container {
+
+        width:
+            min(560px, 100%);
+
+        text-align: center;
+
+    }
+
+
+    .logo {
+
+        width: 54px;
+
+        height: 54px;
+
+        display: grid;
+
+        place-items: center;
+
+        margin: 0 auto 28px;
+
+        border-radius: 17px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-size: 21px;
+
+        font-weight: 800;
+
+        box-shadow:
+            0 18px 45px
+            rgba(141,92,255,0.15);
+
+    }
+
+
+    .error-number {
+
+        font-size:
+            clamp(90px, 25vw, 170px);
+
+        line-height: .85;
+
+        font-weight: 800;
+
+        letter-spacing:
+            -0.09em;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold-light),
+                var(--purple)
+            );
+
+        -webkit-background-clip: text;
+
+        background-clip: text;
+
+        color: transparent;
+
+        opacity: .9;
+
+    }
+
+
+    h1 {
+
+        margin-top: 25px;
+
+        font-size:
+            clamp(23px, 6vw, 32px);
+
+        letter-spacing:
+            -0.04em;
+
+    }
+
+
+    p {
+
+        width:
+            min(450px, 100%);
+
+        margin:
+            12px auto 0;
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        line-height: 1.7;
+
+    }
+
+
+    .actions {
+
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        margin-top: 25px;
+
+    }
+
+
+    .btn {
+
+        min-width: 135px;
+
+        min-height: 43px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 0 17px;
+
+        border-radius: 11px;
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        text-decoration: none;
+
+        transition:
+            transform .2s ease,
+            opacity .2s ease;
+
+    }
+
+
+    .btn:hover {
+
+        transform:
+            translateY(-2px);
+
+    }
+
+
+    .primary {
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+    }
+
+
+    .secondary {
+
+        background:
+            var(--surface);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--text);
+
+    }
+
+
+    .hint {
+
+        margin-top: 25px;
+
+        color: #686273;
+
+        font-size: 8px;
+
+    }
+
+
+    .hint span {
+
+        color:
+            var(--gold-light);
+
+    }
+
+
+    footer {
+
+        position: fixed;
+
+        bottom: 18px;
+
+        left: 0;
+
+        width: 100%;
+
+        text-align: center;
+
+        color: #575260;
+
+        font-size: 7px;
+
+    }
+
+
+    @media (max-width: 450px) {
+
+        body {
+
+            padding:
+                20px;
+
+        }
+
+
+        .logo {
+
+            width: 48px;
+
+            height: 48px;
+
+            margin-bottom: 23px;
+
+        }
+
+
+        .error-number {
+
+            font-size:
+                105px;
+
+        }
+
+
+        .btn {
+
+            width: 100%;
+
+        }
+
+    }
+
+</style>
+
+</head><body><main class="container">
+
+
+    <div class="logo">
+        B
+    </div>
+
+
+    <div class="error-number">
+        404
+    </div>
+
+
+    <h1>
+        This page went off the buzz.
+    </h1>
+
+
+    <p>
+        The page you're looking for doesn't exist,
+        may have moved, or the address may have been
+        entered incorrectly.
+    </p>
+
+
+    <div class="actions">
+
+
+        <a
+            href="index.html"
+            class="btn primary"
+        >
+            BACK TO BUZZNET
+        </a>
+
+
+        <a
+            href="explore.html"
+            class="btn secondary"
+        >
+            EXPLORE
+        </a>
+
+
+    </div>
+
+
+    <div class="hint">
+
+        Lost? Start from the
+        <span>BuzzNet home</span>
+        and find your way back.
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 BuzzNet · Connect · Discover · Create
+
+</footer>
+
+</body></html>

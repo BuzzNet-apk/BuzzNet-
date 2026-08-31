@@ -1,0 +1,1414 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d"><title>Notifications · BuzzNet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+        --bg: #08070d;
+        --surface: #111019;
+        --surface-2: #171521;
+        --surface-3: #211d2c;
+
+        --text: #f8f6ff;
+        --muted: #9993a8;
+
+        --gold: #d8b15a;
+        --gold-light: #f1d78f;
+
+        --purple: #8d5cff;
+        --purple-light: #b28cff;
+
+        --border: rgba(255,255,255,0.08);
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        min-height: 100vh;
+        padding-bottom: 95px;
+
+        background:
+            radial-gradient(
+                circle at 80% 0%,
+                rgba(141,92,255,0.13),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 10% 35%,
+                rgba(216,177,90,0.07),
+                transparent 25%
+            ),
+            var(--bg);
+
+        color: var(--text);
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    button {
+        font: inherit;
+        border: 0;
+        cursor: pointer;
+    }
+
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    /* =================================================
+       TOP BAR
+       ================================================= */
+
+    .topbar {
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 20px;
+
+        background: rgba(8,7,13,0.88);
+
+        border-bottom:
+            1px solid var(--border);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .back-btn {
+
+        width: 40px;
+        height: 40px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background: var(--surface-2);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--text);
+
+        font-size: 21px;
+    }
+
+
+    .title {
+        text-align: center;
+    }
+
+
+    .title h1 {
+
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+
+    .title p {
+
+        margin-top: 2px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    .mark-read {
+
+        padding: 9px 12px;
+
+        border-radius: 11px;
+
+        background:
+            rgba(216,177,90,0.08);
+
+        border:
+            1px solid rgba(216,177,90,0.22);
+
+        color: var(--gold-light);
+
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+
+    /* =================================================
+       MAIN
+       ================================================= */
+
+    .container {
+
+        width:
+            min(760px, calc(100% - 24px));
+
+        margin: auto;
+
+        padding-top: 24px;
+    }
+
+
+    /* =================================================
+       NOTIFICATION FILTERS
+       ================================================= */
+
+    .filters {
+
+        display: flex;
+
+        gap: 8px;
+
+        overflow-x: auto;
+
+        padding-bottom: 5px;
+
+        scrollbar-width: none;
+    }
+
+
+    .filters::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .filter {
+
+        flex: 0 0 auto;
+
+        padding: 9px 14px;
+
+        border-radius: 12px;
+
+        background: var(--surface);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--muted);
+
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+
+    .filter.active {
+
+        background:
+            rgba(216,177,90,0.1);
+
+        border-color:
+            rgba(216,177,90,0.28);
+
+        color:
+            var(--gold-light);
+    }
+
+
+    /* =================================================
+       SECTION
+       ================================================= */
+
+    .section {
+
+        margin-top: 27px;
+    }
+
+
+    .section-title {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 11px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 14px;
+    }
+
+
+    .section-title span {
+
+        color: var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    /* =================================================
+       NOTIFICATION CARD
+       ================================================= */
+
+    .notification {
+
+        position: relative;
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+        padding: 15px;
+
+        margin-bottom: 9px;
+
+        border-radius: 17px;
+
+        background: var(--surface);
+
+        border:
+            1px solid var(--border);
+
+        transition: 0.2s ease;
+    }
+
+
+    .notification:hover {
+
+        transform:
+            translateY(-1px);
+
+        border-color:
+            rgba(141,92,255,0.25);
+    }
+
+
+    .notification.unread {
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(141,92,255,0.08),
+                var(--surface)
+            );
+    }
+
+
+    .notification.unread::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 17px;
+
+        width: 3px;
+        height: 30px;
+
+        border-radius:
+            0 4px 4px 0;
+
+        background:
+            linear-gradient(
+                var(--gold),
+                var(--purple)
+            );
+    }
+
+
+    /* =================================================
+       AVATAR
+       ================================================= */
+
+    .avatar {
+
+        position: relative;
+
+        width: 43px;
+        height: 43px;
+
+        flex: 0 0 43px;
+
+        display: grid;
+
+        place-items: center;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--purple),
+                var(--gold)
+            );
+
+        color: #09080d;
+
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+
+    .type-icon {
+
+        position: absolute;
+
+        right: -3px;
+        bottom: -2px;
+
+        width: 19px;
+        height: 19px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 50%;
+
+        background: var(--surface-3);
+
+        border:
+            2px solid var(--surface);
+
+        font-size: 9px;
+    }
+
+
+    /* =================================================
+       CONTENT
+       ================================================= */
+
+    .notification-content {
+
+        flex: 1;
+
+        min-width: 0;
+    }
+
+
+    .notification-text {
+
+        color: #ddd9e7;
+
+        font-size: 12px;
+
+        line-height: 1.55;
+    }
+
+
+    .notification-text strong {
+
+        color: var(--text);
+    }
+
+
+    .notification-time {
+
+        margin-top: 5px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+    }
+
+
+    /* =================================================
+       POST PREVIEW
+       ================================================= */
+
+    .post-preview {
+
+        margin-top: 10px;
+
+        padding: 10px 12px;
+
+        border-radius: 11px;
+
+        background: var(--surface-2);
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =================================================
+       FOLLOW BUTTON
+       ================================================= */
+
+    .follow-btn {
+
+        flex: 0 0 auto;
+
+        padding: 8px 11px;
+
+        border-radius: 10px;
+
+        background:
+            rgba(216,177,90,0.1);
+
+        border:
+            1px solid rgba(216,177,90,0.24);
+
+        color:
+            var(--gold-light);
+
+        font-size: 9px;
+
+        font-weight: 700;
+    }
+
+
+    .follow-btn.following {
+
+        background:
+            rgba(141,92,255,0.1);
+
+        border-color:
+            rgba(141,92,255,0.25);
+
+        color:
+            var(--purple-light);
+    }
+
+
+    /* =================================================
+       EMPTY STATE
+       ================================================= */
+
+    .empty {
+
+        display: none;
+
+        padding: 50px 20px;
+
+        text-align: center;
+    }
+
+
+    .empty-icon {
+
+        width: 65px;
+        height: 65px;
+
+        display: grid;
+        place-items: center;
+
+        margin: auto;
+
+        border-radius: 20px;
+
+        background:
+            rgba(141,92,255,0.1);
+
+        color:
+            var(--gold-light);
+
+        font-size: 27px;
+    }
+
+
+    .empty h2 {
+
+        margin-top: 17px;
+
+        font-size: 18px;
+    }
+
+
+    .empty p {
+
+        max-width: 300px;
+
+        margin: 7px auto;
+
+        color: var(--muted);
+
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =================================================
+       BOTTOM NAV
+       ================================================= */
+
+    .bottom-nav {
+
+        position: fixed;
+
+        left: 50%;
+        bottom: 10px;
+
+        z-index: 200;
+
+        width:
+            min(650px, calc(100% - 22px));
+
+        height: 65px;
+
+        transform:
+            translateX(-50%);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content:
+            space-around;
+
+        padding: 5px;
+
+        background:
+            rgba(17,16,25,0.95);
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 21px;
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,0.55);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+
+    .nav-item {
+
+        min-width: 55px;
+        height: 53px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 2px;
+
+        border-radius: 15px;
+
+        color: var(--muted);
+
+        font-size: 9px;
+
+        font-weight: 600;
+    }
+
+
+    .nav-item.active {
+
+        color: var(--gold-light);
+
+        background:
+            rgba(216,177,90,0.08);
+    }
+
+
+    .nav-icon {
+
+        font-size: 19px;
+
+        line-height: 1;
+    }
+
+
+    .ik-nav-icon {
+
+        width: 34px;
+        height: 34px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold),
+                var(--purple)
+            );
+
+        color: #09080d;
+
+        font-weight: 800;
+    }
+
+
+    /* =================================================
+       MOBILE
+       ================================================= */
+
+    @media (max-width: 520px) {
+
+        .topbar {
+            padding: 0 12px;
+        }
+
+        .container {
+            width:
+                calc(100% - 18px);
+
+            padding-top: 20px;
+        }
+
+        .mark-read {
+            padding:
+                8px 9px;
+        }
+
+        .notification {
+            padding: 13px;
+        }
+
+        .follow-btn {
+            padding:
+                7px 9px;
+        }
+
+        .bottom-nav {
+            width:
+                calc(100% - 14px);
+        }
+    }
+
+</style>
+
+</head><body><!-- =================================================
+     TOP BAR
+     ================================================= -->
+
+<header class="topbar">
+
+    <a
+        href="index.html"
+        class="back-btn"
+        aria-label="Back"
+    >
+        ←
+    </a>
+
+
+    <div class="title">
+
+        <h1>Notifications</h1>
+
+        <p>Stay up to date</p>
+
+    </div>
+
+
+    <button
+        class="mark-read"
+        id="markRead"
+    >
+        Mark all read
+    </button>
+
+</header>
+
+
+
+<!-- =================================================
+     MAIN
+     ================================================= -->
+
+<main class="container">
+
+
+    <!-- Filters -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-filter="all"
+        >
+            All
+        </button>
+
+        <button
+            class="filter"
+            data-filter="likes"
+        >
+            Likes
+        </button>
+
+        <button
+            class="filter"
+            data-filter="comments"
+        >
+            Comments
+        </button>
+
+        <button
+            class="filter"
+            data-filter="follows"
+        >
+            Follows
+        </button>
+
+        <button
+            class="filter"
+            data-filter="mentions"
+        >
+            Mentions
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         TODAY
+         ================================================= -->
+
+    <section
+        class="section"
+        id="todaySection"
+    >
+
+        <div class="section-title">
+
+            <h2>Today</h2>
+
+            <span id="todayCount">
+                4 notifications
+            </span>
+
+        </div>
+
+
+        <!-- Like -->
+
+        <article
+            class="notification unread"
+            data-type="likes"
+        >
+
+            <div class="avatar">
+
+                A
+
+                <span class="type-icon">
+                    ♡
+                </span>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <div class="notification-text">
+
+                    <strong>Alex Morgan</strong>
+                    liked your post.
+
+                </div>
+
+                <div class="notification-time">
+                    12 minutes ago
+                </div>
+
+
+                <div class="post-preview">
+
+                    “Keep building. The future belongs
+                    to creators.”
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- Comment -->
+
+        <article
+            class="notification unread"
+            data-type="comments"
+        >
+
+            <div class="avatar">
+
+                J
+
+                <span class="type-icon">
+                    💬
+                </span>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <div class="notification-text">
+
+                    <strong>Jordan Lee</strong>
+                    commented on your post.
+
+                </div>
+
+                <div class="notification-time">
+                    35 minutes ago
+                </div>
+
+
+                <div class="post-preview">
+
+                    “This is exactly what I needed
+                    to hear. 🔥”
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- Follow -->
+
+        <article
+            class="notification unread"
+            data-type="follows"
+        >
+
+            <div class="avatar">
+
+                S
+
+                <span class="type-icon">
+                    +
+                </span>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <div class="notification-text">
+
+                    <strong>Sarah Kim</strong>
+                    started following you.
+
+                </div>
+
+                <div class="notification-time">
+                    1 hour ago
+                </div>
+
+            </div>
+
+
+            <button
+                class="follow-btn"
+            >
+                Follow back
+            </button>
+
+        </article>
+
+
+
+        <!-- Mention -->
+
+        <article
+            class="notification unread"
+            data-type="mentions"
+        >
+
+            <div class="avatar">
+
+                M
+
+                <span class="type-icon">
+                    @
+                </span>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <div class="notification-text">
+
+                    <strong>Maya</strong>
+                    mentioned you in a post.
+
+                </div>
+
+                <div class="notification-time">
+                    2 hours ago
+                </div>
+
+
+                <div class="post-preview">
+
+                    “Building great things with
+                    @you and the BuzzNet community.”
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- =================================================
+         EARLIER
+         ================================================= -->
+
+    <section
+        class="section"
+        id="earlierSection"
+    >
+
+        <div class="section-title">
+
+            <h2>Earlier</h2>
+
+            <span>Recent activity</span>
+
+        </div>
+
+
+        <article
+            class="notification"
+            data-type="likes"
+        >
+
+            <div class="avatar">
+
+                D
+
+                <span class="type-icon">
+                    ♡
+                </span>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <div class="notification-text">
+
+                    <strong>David Cole</strong>
+                    liked your post.
+
+                </div>
+
+                <div class="notification-time">
+                    Yesterday
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <article
+            class="notification"
+            data-type="follows"
+        >
+
+            <div class="avatar">
+
+                K
+
+                <span class="type-icon">
+                    +
+                </span>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <div class="notification-text">
+
+                    <strong>Kevin</strong>
+                    started following you.
+
+                </div>
+
+                <div class="notification-time">
+                    Yesterday
+                </div>
+
+            </div>
+
+
+            <button
+                class="follow-btn"
+            >
+                Follow back
+            </button>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- =================================================
+         EMPTY
+         ================================================= -->
+
+    <div
+        class="empty"
+        id="emptyState"
+    >
+
+        <div class="empty-icon">
+            ♡
+        </div>
+
+        <h2>No notifications</h2>
+
+        <p>
+            You're all caught up. New activity
+            will appear here.
+        </p>
+
+    </div>
+
+</main>
+
+
+
+<!-- =================================================
+     BOTTOM NAV
+     ================================================= -->
+
+<nav class="bottom-nav">
+
+    <a
+        href="index.html"
+        class="nav-item"
+    >
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span>Home</span>
+
+    </a>
+
+
+    <a
+        href="explore.html"
+        class="nav-item"
+    >
+
+        <span class="nav-icon">
+            ⌕
+        </span>
+
+        <span>Explore</span>
+
+    </a>
+
+
+    <a
+        href="ik.html"
+        class="nav-item"
+    >
+
+        <span class="ik-nav-icon">
+            ✦
+        </span>
+
+        <span>ik</span>
+
+    </a>
+
+
+    <a
+        href="notifications.html"
+        class="nav-item active"
+    >
+
+        <span class="nav-icon">
+            ♡
+        </span>
+
+        <span>Alerts</span>
+
+    </a>
+
+
+    <a
+        href="profile.html"
+        class="nav-item"
+    >
+
+        <span class="nav-icon">
+            ◯
+        </span>
+
+        <span>Profile</span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+     ================================================= -->
+
+<script>
+
+    const filters =
+        document.querySelectorAll(".filter");
+
+    const notifications =
+        document.querySelectorAll(".notification");
+
+    const markRead =
+        document.getElementById("markRead");
+
+    const emptyState =
+        document.getElementById("emptyState");
+
+    const todaySection =
+        document.getElementById("todaySection");
+
+    const earlierSection =
+        document.getElementById("earlierSection");
+
+    const todayCount =
+        document.getElementById("todayCount");
+
+
+    /* ================================================
+       FILTERS
+       ================================================ */
+
+    filters.forEach(filter => {
+
+        filter.addEventListener("click", () => {
+
+            filters.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            filter.classList.add("active");
+
+            const selected =
+                filter.dataset.filter;
+
+            let visibleCount = 0;
+
+            notifications.forEach(notification => {
+
+                const type =
+                    notification.dataset.type;
+
+                if (
+                    selected === "all" ||
+                    type === selected
+                ) {
+
+                    notification.style.display = "flex";
+
+                    visibleCount++;
+
+                } else {
+
+                    notification.style.display = "none";
+
+                }
+
+            });
+
+
+            /* Show empty state if nothing matches */
+
+            if (visibleCount === 0) {
+
+                emptyState.style.display = "block";
+
+                todaySection.style.display = "none";
+                earlierSection.style.display = "none";
+
+            } else {
+
+                emptyState.style.display = "none";
+
+                todaySection.style.display = "block";
+                earlierSection.style.display = "block";
+
+            }
+
+        });
+
+    });
+
+
+    /* ================================================
+       MARK ALL AS READ
+       ================================================ */
+
+    markRead.addEventListener("click", () => {
+
+        notifications.forEach(notification => {
+
+            notification.classList.remove("unread");
+
+        });
+
+        markRead.textContent = "All read";
+
+        markRead.style.opacity = "0.7";
+
+        updateTodayCount();
+
+    });
+
+
+    /* ================================================
+       FOLLOW BACK BUTTONS
+       ================================================ */
+
+    const followButtons =
+        document.querySelectorAll(".follow-btn");
+
+    followButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            if (
+                button.classList.contains("following")
+            ) {
+
+                button.classList.remove("following");
+
+                button.textContent = "Follow back";
+
+            } else {
+
+                button.classList.add("following");
+
+                button.textContent = "Following";
+
+            }
+
+        });
+
+    });
+
+
+    /* ================================================
+       CLICK NOTIFICATION
+       ================================================ */
+
+    notifications.forEach(notification => {
+
+        notification.addEventListener("click", event => {
+
+            /* Don't mark as read when clicking Follow back */
+
+            if (
+                event.target.classList.contains("follow-btn")
+            ) {
+                return;
+            }
+
+            notification.classList.remove("unread");
+
+            updateTodayCount();
+
+        });
+
+    });
+
+
+    /* ================================================
+       UPDATE TODAY COUNT
+       ================================================ */
+
+    function updateTodayCount() {
+
+        const unreadToday =
+            todaySection.querySelectorAll(
+                ".notification.unread"
+            ).length;
+
+        if (unreadToday === 0) {
+
+            todayCount.textContent =
+                "All caught up";
+
+        } else if (unreadToday === 1) {
+
+            todayCount.textContent =
+                "1 unread";
+
+        } else {
+
+            todayCount.textContent =
+                unreadToday + " unread";
+
+        }
+
+    }
+
+
+    /* ================================================
+       INITIAL COUNT
+       ================================================ */
+
+    updateTodayCount();
+
+
+</script>
+
+</body>
+</html>
