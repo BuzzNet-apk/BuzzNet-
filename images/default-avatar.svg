@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs>
+
+    <linearGradient
+        id="avatarGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+    >
+
+        <stop
+            offset="0%"
+            stop-color="#f1d78f"
+        />
+
+        <stop
+            offset="48%"
+            stop-color="#d8b15a"
+        />
+
+        <stop
+            offset="100%"
+            stop-color="#8d5cff"
+        />
+
+    </linearGradient>
+
+    <linearGradient
+        id="avatarGlow"
+        x1="0%"
+        y1="100%"
+        x2="100%"
+        y2="0%"
+    >
+
+        <stop
+            offset="0%"
+            stop-color="#8d5cff"
+            stop-opacity=".75"
+        />
+
+        <stop
+            offset="100%"
+            stop-color="#f1d78f"
+            stop-opacity=".85"
+        />
+
+    </linearGradient>
+
+</defs>
+
+
+<!-- Background -->
+
+<rect
+    width="512"
+    height="512"
+    rx="256"
+    fill="#111019"
+/>
+
+
+<!-- Outer ring -->
+
+<circle
+    cx="256"
+    cy="256"
+    r="238"
+    fill="none"
+    stroke="url(#avatarGradient)"
+    stroke-width="14"
+/>
+
+
+<!-- Glow -->
+
+<circle
+    cx="256"
+    cy="256"
+    r="205"
+    fill="url(#avatarGlow)"
+    opacity=".14"
+/>
+
+
+<!-- Head -->
+
+<circle
+    cx="256"
+    cy="205"
+    r="82"
+    fill="url(#avatarGradient)"
+/>
+
+
+<!-- Shoulders -->
+
+<path
+    d="
+        M105 425
+        C119 333 176 294 256 294
+        C336 294 393 333 407 425
+        Z
+    "
+    fill="url(#avatarGradient)"
+/>
+
+
+<!-- Highlight -->
+
+<circle
+    cx="225"
+    cy="177"
+    r="24"
+    fill="#ffffff"
+    opacity=".10"
+/>
+
+
+<!-- Small BuzzNet mark -->
+
+<circle
+    cx="392"
+    cy="105"
+    r="30"
+    fill="#08070d"
+    stroke="#d8b15a"
+    stroke-width="5"
+/>
+
+<text
+    x="392"
+    y="116"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="28"
+    font-weight="800"
+    fill="#f1d78f"
+>B</text>
+
+</svg>

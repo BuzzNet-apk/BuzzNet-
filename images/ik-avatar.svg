@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs>
+
+    <linearGradient
+        id="ikGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+    >
+
+        <stop
+            offset="0%"
+            stop-color="#f1d78f"
+        />
+
+        <stop
+            offset="45%"
+            stop-color="#d8b15a"
+        />
+
+        <stop
+            offset="100%"
+            stop-color="#8d5cff"
+        />
+
+    </linearGradient>
+
+
+    <radialGradient
+        id="ikGlow"
+        cx="50%"
+        cy="35%"
+        r="70%"
+    >
+
+        <stop
+            offset="0%"
+            stop-color="#8d5cff"
+            stop-opacity=".42"
+        />
+
+        <stop
+            offset="100%"
+            stop-color="#08070d"
+            stop-opacity="0"
+        />
+
+    </radialGradient>
+
+</defs>
+
+
+<!-- Background -->
+
+<rect
+    width="512"
+    height="512"
+    rx="150"
+    fill="#08070d"
+/>
+
+
+<!-- AI glow -->
+
+<rect
+    x="25"
+    y="25"
+    width="462"
+    height="462"
+    rx="135"
+    fill="url(#ikGlow)"
+/>
+
+
+<!-- Outer frame -->
+
+<rect
+    x="35"
+    y="35"
+    width="442"
+    height="442"
+    rx="125"
+    fill="none"
+    stroke="url(#ikGradient)"
+    stroke-width="12"
+    opacity=".75"
+/>
+
+
+<!-- Main AI symbol -->
+
+<circle
+    cx="256"
+    cy="245"
+    r="125"
+    fill="#111019"
+    stroke="url(#ikGradient)"
+    stroke-width="9"
+/>
+
+
+<!-- Neural connections -->
+
+<line
+    x1="178"
+    y1="190"
+    x2="145"
+    y2="155"
+    stroke="#d8b15a"
+    stroke-width="7"
+    stroke-linecap="round"
+    opacity=".8"
+/>
+
+<line
+    x1="334"
+    y1="190"
+    x2="367"
+    y2="155"
+    stroke="#8d5cff"
+    stroke-width="7"
+    stroke-linecap="round"
+    opacity=".8"
+/>
+
+<line
+    x1="176"
+    y1="295"
+    x2="138"
+    y2="330"
+    stroke="#8d5cff"
+    stroke-width="7"
+    stroke-linecap="round"
+    opacity=".8"
+/>
+
+<line
+    x1="336"
+    y1="295"
+    x2="374"
+    y2="330"
+    stroke="#d8b15a"
+    stroke-width="7"
+    stroke-linecap="round"
+    opacity=".8"
+/>
+
+
+<!-- Neural nodes -->
+
+<circle
+    cx="145"
+    cy="155"
+    r="14"
+    fill="#d8b15a"
+/>
+
+<circle
+    cx="367"
+    cy="155"
+    r="14"
+    fill="#8d5cff"
+/>
+
+<circle
+    cx="138"
+    cy="330"
+    r="14"
+    fill="#8d5cff"
+/>
+
+<circle
+    cx="374"
+    cy="330"
+    r="14"
+    fill="#d8b15a"
+/>
+
+
+<!-- AI eyes -->
+
+<circle
+    cx="212"
+    cy="235"
+    r="18"
+    fill="url(#ikGradient)"
+/>
+
+<circle
+    cx="300"
+    cy="235"
+    r="18"
+    fill="url(#ikGradient)"
+/>
+
+
+<!-- Eye highlights -->
+
+<circle
+    cx="207"
+    cy="230"
+    r="5"
+    fill="#ffffff"
+    opacity=".75"
+/>
+
+<circle
+    cx="295"
+    cy="230"
+    r="5"
+    fill="#ffffff"
+    opacity=".75"
+/>
+
+
+<!-- AI smile -->
+
+<path
+    d="M205 290 Q256 330 307 290"
+    fill="none"
+    stroke="#f1d78f"
+    stroke-width="9"
+    stroke-linecap="round"
+/>
+
+
+<!-- ik label -->
+
+<text
+    x="256"
+    y="430"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="70"
+    font-weight="800"
+    letter-spacing="-4"
+    fill="url(#ikGradient)"
+>ik</text>
+
+</svg>
